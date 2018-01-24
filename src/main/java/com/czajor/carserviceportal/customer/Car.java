@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal;
+package com.czajor.carserviceportal.customer;
 
 import lombok.Data;
 
@@ -10,4 +10,13 @@ class Car {
     private final int buildYear;
     private final String engine;
     private final double engineVolume;
+
+    @Override
+    public String toString() {
+        return  brand + " " +
+                model + " " +
+                buildYear + " " +
+                ", engine: " + engineVolume + " " +
+                engine;
+    }
 }
