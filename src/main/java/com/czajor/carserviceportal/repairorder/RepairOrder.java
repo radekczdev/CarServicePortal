@@ -20,15 +20,15 @@ class RepairOrder {
 
     public RepairOrder(RepairOrderType repairOrderType, Customer customer, String description) {
         this.thisOrderID = orderID++;
-        this.status = RepairOrderStatus.PREPARED;
+        this.status = new RepairOrderStatus(RepairOrderStatus.PREPARED);
         this.repairOrderType = repairOrderType;
         this.customer = customer;
         this.description = description;
-        this.dateOfCreation = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
+        this.dateOfCreation = LocalDateTime.now(ZoneId.systemDefault());
     }
 
     public void changeStatus(String status) {
-        this.status = RepairOrderStatus.getStatus(status);
+        this.status.changeState(status);
     }
 
     @Override
@@ -56,7 +56,7 @@ class RepairOrder {
     public String toString() {
         return "Order info: " +
                 "\n     id: " + thisOrderID +
-                "\n     status: " + status.getStatusDescription() +
+                "\n     status: " + status.getStatus() +
                 "\n     type: " + repairOrderType.getTypeName() +
                 "\n     description: " + description +
                 "\n     created: " + dateOfCreation.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +

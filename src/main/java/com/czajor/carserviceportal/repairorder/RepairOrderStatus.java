@@ -1,34 +1,64 @@
 package com.czajor.carserviceportal.repairorder;
 
-public enum RepairOrderStatus {
-    READY("ready"),
-    WORKSHOP("currently in workshop"),
-    QUEUE("in queue"),
-    PREPARED("to be confirmed");
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-    private String statusDescription;
+public class RepairOrderStatus {
+    public static final String READY = "ready";
+    public static final String WORKSHOP = "currently in workshop";
+    public static final String QUEUE = "in queue";
+    public static final String PREPARED = "to be confirmed";
 
-    RepairOrderStatus(String statusDescription) {
-        this.statusDescription = statusDescription;
+    private String status;
+    private LocalDateTime dateBegan;
+    private LocalDateTime dateEnded;
+
+    RepairOrderStatus(String status) {
+        try {
+            this.status = switchStatus(status);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unknown status type: " + status);
+        }
+        this.dateBegan = LocalDateTime.now(ZoneId.systemDefault());
     }
 
-    public String getStatusDescription() {
-        return statusDescription;
-    }
-
-    public static RepairOrderStatus getStatus(String statusDescription) {
-        switch(statusDescription) {
-            case "ready":
+    private String switchStatus(String status) throws IllegalArgumentException {
+        switch(status) {
+            case READY:
                 return READY;
-            case "currently in workshop":
+            case WORKSHOP:
                 return WORKSHOP;
-            case "in queue":
+            case QUEUE:
                 return QUEUE;
-            case "to be confirmed":
+            case PREPARED:
                 return PREPARED;
             default:
-                throw new IllegalArgumentException("Unknown status type: " + statusDescription);
+                throw new IllegalArgumentException();
         }
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDateBegan() {
+        return dateBegan;
+    }
+
+    public LocalDateTime getDateEnded() {
+        return dateEnded;
+    }
+
+    public void changeState(String status) {
+        try {
+            this.status = switchStatus(status);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unknown status type: " + status);
+        }
+        this.dateEnded = LocalDateTime.now(ZoneId.systemDefault());
+    }
 }
