@@ -1,5 +1,6 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.car;
 
+import com.czajor.carserviceportal.customer.Customer;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -9,7 +10,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CARS")
-@Access(AccessType.PROPERTY)
 public final @Data
 @Setter(AccessLevel.PRIVATE)
 class Car {
@@ -30,6 +30,8 @@ class Car {
     @NotNull
     private String licensePlate;
     @NotNull
+    @Transient
+//    @ManyToOne
     private Customer customer;
 
     public Car(String brand, String model, int buildYear, String engine, double engineVolume, String licensePlate, Customer customer) {

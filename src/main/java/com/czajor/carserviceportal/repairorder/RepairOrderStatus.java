@@ -10,19 +10,19 @@ public class RepairOrderStatus {
     public static final String PREPARED = "to be confirmed";
 
     private String status;
-    private LocalDateTime dateBegan;
+    private final LocalDateTime dateBegan;
     private LocalDateTime dateEnded;
 
-    RepairOrderStatus(String status) {
+    RepairOrderStatus(String status) throws IllegalArgumentException{
         try {
-            this.status = switchStatus(status);
+            this.status = getStatusName(status);
         } catch (IllegalArgumentException e) {
-            System.out.println("Unknown status type: " + status);
+            throw new IllegalArgumentException("Unknown status type: " + status);
         }
         this.dateBegan = LocalDateTime.now(ZoneId.systemDefault());
     }
 
-    private String switchStatus(String status) throws IllegalArgumentException {
+    private String getStatusName(String status) throws IllegalArgumentException {
         switch(status) {
             case READY:
                 return READY;
@@ -33,16 +33,12 @@ public class RepairOrderStatus {
             case PREPARED:
                 return PREPARED;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Unknown type of Order Status!");
         }
     }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public LocalDateTime getDateBegan() {
@@ -53,12 +49,14 @@ public class RepairOrderStatus {
         return dateEnded;
     }
 
-    public void changeState(String status) {
-        try {
-            this.status = switchStatus(status);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Unknown status type: " + status);
-        }
+    public void closeStatus() {
         this.dateEnded = LocalDateTime.now(ZoneId.systemDefault());
+    }
+
+    @Override
+    public String toString() {
+        return "Status: " + status +
+                ", date began: " + dateBegan +
+                ", date ended: " + dateEnded;
     }
 }

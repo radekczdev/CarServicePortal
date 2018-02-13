@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.car;
 
 public enum CarMakers {
     Ford,

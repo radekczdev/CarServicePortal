@@ -30,4 +30,9 @@ public enum RepairOrderType {
                 throw new IllegalArgumentException("Unknown order type: " + orderType);
         }
     }
+
+    @Override
+    public String toString() {
+        return typeName;
+    }
 }

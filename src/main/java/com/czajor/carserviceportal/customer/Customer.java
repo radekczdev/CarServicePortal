@@ -1,6 +1,10 @@
 package com.czajor.carserviceportal.customer;
 
+import com.czajor.carserviceportal.car.Car;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public @Data
 final class Customer {
@@ -11,16 +15,19 @@ final class Customer {
     private final String email;
     private final String phoneNumber;
     private final Address address;
-    private final Car car;
+    private final List<Car> car = new ArrayList<>();
 
-    public Customer(String name, String surname, String email, String phoneNumber, Address address, Car car) {
+    public Customer(String name, String surname, String email, String phoneNumber, Address address) {
         this.id = currentId++;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.car = car;
+    }
+
+    public void addCar(Car car) {
+        this.car.add(car);
     }
 
     @Override
