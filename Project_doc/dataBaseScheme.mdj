@@ -2303,7 +2303,7 @@
 								"reference": {
 									"$ref": "AAAAAAFhKaduXBooAOA="
 								},
-								"cardinality": "1"
+								"cardinality": "1..*"
 							},
 							"identifying": true
 						}
@@ -2592,7 +2592,7 @@
 								"reference": {
 									"$ref": "AAAAAAFhKcifHCodR8A="
 								},
-								"cardinality": "1"
+								"cardinality": "1..*"
 							},
 							"identifying": true
 						},
@@ -2622,7 +2622,7 @@
 								"reference": {
 									"$ref": "AAAAAAFhKcWQGyoDbPA="
 								},
-								"cardinality": "1"
+								"cardinality": "1..*"
 							},
 							"identifying": true
 						}
