@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class RepairOrderStatus {
-    public static final String READY = "ready";
-    public static final String WORKSHOP = "currently in workshop";
-    public static final String QUEUE = "in queue";
     public static final String PREPARED = "to be confirmed";
+    public static final String QUEUE = "in queue";
+    public static final String WORKSHOP = "currently in workshop";
+    public static final String READY = "ready";
 
     private String status;
     private final LocalDateTime dateBegan;
@@ -15,14 +15,14 @@ public class RepairOrderStatus {
 
     RepairOrderStatus(String status) throws IllegalArgumentException{
         try {
-            this.status = getStatusName(status);
+            this.status = checkStatus(status);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Unknown status type: " + status);
         }
         this.dateBegan = LocalDateTime.now(ZoneId.systemDefault());
     }
 
-    private String getStatusName(String status) throws IllegalArgumentException {
+    private String checkStatus(String status) throws IllegalArgumentException {
         switch(status) {
             case READY:
                 return READY;
@@ -37,7 +37,7 @@ public class RepairOrderStatus {
         }
     }
 
-    public String getStatus() {
+    public String getStatusName() {
         return status;
     }
 

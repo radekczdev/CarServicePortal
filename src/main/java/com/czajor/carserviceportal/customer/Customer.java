@@ -1,12 +1,19 @@
 package com.czajor.carserviceportal.customer;
 
 import com.czajor.carserviceportal.car.Car;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Entity
+//@Table(name = "CUSTOMERS")
 public @Data
+@Setter(AccessLevel.PRIVATE)
 final class Customer {
     private static int currentId = 0;
     private final int id;

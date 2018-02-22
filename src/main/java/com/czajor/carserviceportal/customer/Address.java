@@ -1,13 +1,33 @@
 package com.czajor.carserviceportal.customer;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public @Data class Address {
-    private final String city;
-    private final String street;
-    private final int homeNumber;
-    private final int flatNumber;
-    private final String postCode;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@NoArgsConstructor
+@Entity
+@Table(name = "ADDRESSES")
+public final @Data
+@Setter(AccessLevel.PRIVATE)
+class Address {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID", unique = true)
+    private int id;
+    @NotNull
+    private String city;
+    @NotNull
+    private String street;
+    @NotNull
+    private int homeNumber;
+    private int flatNumber;
+    @NotNull
+    private String postCode;
     private static final int NO_FLAT_NUMBER = 0;
 
     public static class Builder {
@@ -43,16 +63,16 @@ public @Data class Address {
         }
 
         public Address build(){
-            return new Address(city, street, homeNumber, flatNumber, postCode);
+            return new Address(this);
         }
     }
 
-    private Address(final String city, final String street, final int homeNumber, final int flatNumber, final String postCode) {
-        this.city = city;
-        this.street = street;
-        this.homeNumber = homeNumber;
-        this.flatNumber = flatNumber;
-        this.postCode = postCode;
+    private Address(Builder builder) {
+        this.city = builder.city;
+        this.street = builder.street;
+        this.homeNumber = builder.homeNumber;
+        this.flatNumber = builder.flatNumber;
+        this.postCode = builder.postCode;
     }
 
     @Override

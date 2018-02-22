@@ -21,7 +21,7 @@ public class CarServicePortalTestSuite {
         // When
         order.changeStatus("in queue");
         order.changeStatus("ready");
-        String currentStatus = order.getCurrentStatus().getStatus();
+        String currentStatus = order.getCurrentStatus().getStatusName();
 
         System.out.println(order);
 

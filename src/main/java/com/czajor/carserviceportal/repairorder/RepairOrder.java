@@ -60,7 +60,7 @@ class RepairOrder {
     public String toString() {
         return "Order info: " +
                 "\n     id: " + thisOrderID +
-                "\n     current status: " + currentStatus.getStatus() +
+                "\n     current status: " + currentStatus.getStatusName() +
                 "\n     type: " + repairOrderType +
                 "\n     description: " + description +
                 "\n     created: " + dateOfCreation.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
