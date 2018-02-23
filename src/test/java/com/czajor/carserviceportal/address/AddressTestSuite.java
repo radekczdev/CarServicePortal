@@ -1,10 +1,6 @@
-package com.czajor.carserviceportal.car;
+package com.czajor.carserviceportal.address;
 
 import com.czajor.carserviceportal.RepairOrderGenerator;
-import com.czajor.carserviceportal.address.Address;
-import com.czajor.carserviceportal.address.AddressDao;
-import com.czajor.carserviceportal.customer.Customer;
-import com.czajor.carserviceportal.customer.CustomerDao;
 import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,37 +11,30 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CarTestSuite {
-    @Autowired
-    private CarDao carDao;
+public class AddressTestSuite {
+
     @Autowired
     private AddressDao addressDao;
-    @Autowired
-    private CustomerDao customerDao;
 
     @Test
-    public void testCarDao() {
+    public void testAddressDao() {
         // Given
         RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
         orderGenerator.prepare();
         orderHandler.addOrder(orderGenerator.getOrder());
 
-        Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
-        Car car = customer.getCarList().get(0);
-        Address address = customer.getAddress();
+        Address address = orderHandler.getOrdersSet().get(0).getCar().getCustomer().getAddress();
 
         // When
         addressDao.save(address);
-        customerDao.save(customer);
-        carDao.save(car);
 
         // Then
-        int id = car.getId();
-        Car readCarFromDb = carDao.findOne(id);
-        Assert.assertEquals(id, readCarFromDb.getId());
+        int id = address.getId();
+        Address readAddressFromDb = addressDao.findOne(id);
+        Assert.assertEquals(id, readAddressFromDb.getId());
 
         // CleanUp
-        customerDao.deleteAll();
+        addressDao.deleteAll();
     }
 }

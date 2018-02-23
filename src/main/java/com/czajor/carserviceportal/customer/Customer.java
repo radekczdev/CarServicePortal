@@ -1,31 +1,47 @@
 package com.czajor.carserviceportal.customer;
 
+import com.czajor.carserviceportal.address.Address;
 import com.czajor.carserviceportal.car.Car;
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-//@Table(name = "CUSTOMERS")
-public @Data
+@Entity
+@Table(name = "CUSTOMERS")
+@NoArgsConstructor
+@Getter
 @Setter(AccessLevel.PRIVATE)
-final class Customer {
-    private static int currentId = 0;
-    private final int id;
-    private final String name;
-    private final String surname;
-    private final String email;
-    private final String phoneNumber;
-    private final Address address;
-    private final List<Car> car = new ArrayList<>();
+public final class Customer {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+    @NotNull
+    private String name;
+    @NotNull
+    private String surname;
+    @NotNull
+    private String email;
+    @NotNull
+    private String phoneNumber;
+    @NotNull
+    @OneToOne(orphanRemoval = true)
+    private Address address;
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<Car> carList = new ArrayList<>();
 
     public Customer(String name, String surname, String email, String phoneNumber, Address address) {
-        this.id = currentId++;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -34,7 +50,7 @@ final class Customer {
     }
 
     public void addCar(Car car) {
-        this.car.add(car);
+        this.carList.add(car);
     }
 
     @Override
@@ -45,7 +61,7 @@ final class Customer {
                 "\n     email: " + email +
                 "\n     phoneNumber: " + phoneNumber +
                 "\n     address: " + address +
-                "\n     car: " + car +
+                "\n     car: " + carList +
                 "\n";
     }
 }

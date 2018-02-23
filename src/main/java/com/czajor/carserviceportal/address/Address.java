@@ -1,23 +1,19 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.address;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@NoArgsConstructor
 @Entity
 @Table(name = "ADDRESSES")
-public final @Data
+@NoArgsConstructor
+@Getter
 @Setter(AccessLevel.PRIVATE)
-class Address {
+public final class Address {
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id")
     private int id;
     @NotNull
     private String city;

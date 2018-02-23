@@ -1,10 +1,7 @@
-
 ### My paths ###
 .out
-.gradle
 out/
 lib/
-
 
 ### STS ###
 .apt_generated

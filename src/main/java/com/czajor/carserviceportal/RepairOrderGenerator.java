@@ -1,6 +1,6 @@
 package com.czajor.carserviceportal;
 
-import com.czajor.carserviceportal.customer.Address;
+import com.czajor.carserviceportal.address.Address;
 import com.czajor.carserviceportal.car.Car;
 import com.czajor.carserviceportal.customer.Customer;
 import com.czajor.carserviceportal.repairorder.RepairOrder;

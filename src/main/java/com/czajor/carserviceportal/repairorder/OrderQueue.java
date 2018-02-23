@@ -5,4 +5,5 @@ import java.util.Queue;
 
 public class OrderQueue {
     private Queue<RepairOrder> queue = new ArrayDeque<>();
+    private RepairOrderType queueType;
 }

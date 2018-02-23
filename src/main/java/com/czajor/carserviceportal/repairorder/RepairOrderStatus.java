@@ -1,52 +1,23 @@
 package com.czajor.carserviceportal.repairorder;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+@Getter
 public class RepairOrderStatus {
-    public static final String PREPARED = "to be confirmed";
-    public static final String QUEUE = "in queue";
-    public static final String WORKSHOP = "currently in workshop";
-    public static final String READY = "ready";
-
-    private String status;
+    private StatusType statusType;
     private final LocalDateTime dateBegan;
     private LocalDateTime dateEnded;
 
-    RepairOrderStatus(String status) throws IllegalArgumentException{
+    RepairOrderStatus(StatusType statusType) throws IllegalArgumentException{
         try {
-            this.status = checkStatus(status);
+            this.statusType = statusType;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Unknown status type: " + status);
+            throw new IllegalArgumentException("Unknown status type: " + statusType);
         }
         this.dateBegan = LocalDateTime.now(ZoneId.systemDefault());
-    }
-
-    private String checkStatus(String status) throws IllegalArgumentException {
-        switch(status) {
-            case READY:
-                return READY;
-            case WORKSHOP:
-                return WORKSHOP;
-            case QUEUE:
-                return QUEUE;
-            case PREPARED:
-                return PREPARED;
-            default:
-                throw new IllegalArgumentException("Unknown type of Order Status!");
-        }
-    }
-
-    public String getStatusName() {
-        return status;
-    }
-
-    public LocalDateTime getDateBegan() {
-        return dateBegan;
-    }
-
-    public LocalDateTime getDateEnded() {
-        return dateEnded;
     }
 
     public void closeStatus() {
@@ -55,7 +26,7 @@ public class RepairOrderStatus {
 
     @Override
     public String toString() {
-        return "Status: " + status +
+        return "Status: " + statusType +
                 ", date began: " + dateBegan +
                 ", date ended: " + dateEnded;
     }

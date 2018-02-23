@@ -22,14 +22,14 @@ class RepairOrder {
 
     public RepairOrder(Car car, String description, RepairOrderType... repairOrderType) {
         this.thisOrderID = orderID++;
-        this.currentStatus = new RepairOrderStatus(RepairOrderStatus.PREPARED);
+        this.currentStatus = new RepairOrderStatus(StatusType.PREPARED);
         this.repairOrderType.addAll(Arrays.asList(repairOrderType));
         this.car = car;
         this.description = description;
         this.dateOfCreation = LocalDateTime.now(ZoneId.systemDefault());
     }
 
-    public void changeStatus(String status) {
+    public void changeStatus(StatusType status) {
         currentStatus.closeStatus();
         previousStatusList.add(currentStatus);
         currentStatus = new RepairOrderStatus(status);
@@ -60,7 +60,7 @@ class RepairOrder {
     public String toString() {
         return "Order info: " +
                 "\n     id: " + thisOrderID +
-                "\n     current status: " + currentStatus.getStatusName() +
+                "\n     current status: " + currentStatus.getStatusType() +
                 "\n     type: " + repairOrderType +
                 "\n     description: " + description +
                 "\n     created: " + dateOfCreation.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
