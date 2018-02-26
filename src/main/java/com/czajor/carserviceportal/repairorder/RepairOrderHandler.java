@@ -7,7 +7,7 @@ public class RepairOrderHandler {
     private final Map<Integer, RepairOrder> ordersSet = new HashMap<>();
 
     public void addOrder(RepairOrder repairOrder) {
-        ordersSet.put(repairOrder.getThisOrderID(), repairOrder);
+        ordersSet.put(repairOrder.getId(), repairOrder);
     }
 
     public RepairOrder getOrder(int id) {

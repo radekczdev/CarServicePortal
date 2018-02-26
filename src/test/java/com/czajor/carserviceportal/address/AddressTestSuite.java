@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AddressTestSuite {
 
     @Autowired
-    private AddressDao addressDao;
+    private AddressRepository addressDao;
 
     @Test
     public void testAddressDao() {

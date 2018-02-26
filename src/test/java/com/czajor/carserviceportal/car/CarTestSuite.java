@@ -2,9 +2,9 @@ package com.czajor.carserviceportal.car;
 
 import com.czajor.carserviceportal.RepairOrderGenerator;
 import com.czajor.carserviceportal.address.Address;
-import com.czajor.carserviceportal.address.AddressDao;
+import com.czajor.carserviceportal.address.AddressRepository;
 import com.czajor.carserviceportal.customer.Customer;
-import com.czajor.carserviceportal.customer.CustomerDao;
+import com.czajor.carserviceportal.customer.CustomerRepository;
 import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,11 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CarTestSuite {
     @Autowired
-    private CarDao carDao;
+    private CarRepository carDao;
     @Autowired
-    private AddressDao addressDao;
+    private AddressRepository addressDao;
     @Autowired
-    private CustomerDao customerDao;
+    private CustomerRepository customerDao;
 
     @Test
     public void testCarDao() {

@@ -1,15 +1,30 @@
 package com.czajor.carserviceportal.repairorder;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 
+@Entity
+@Table(name = "REPAIR_ORDER_STATUSES")
+@NoArgsConstructor
 @Getter
+@Setter(AccessLevel.PRIVATE)
 public class RepairOrderStatus {
+    @Id
+    @GeneratedValue
+    private int id;
+    @Enumerated(EnumType.STRING)
     private StatusType statusType;
-    private final LocalDateTime dateBegan;
-    private LocalDateTime dateEnded;
+    @NotNull
+    private Date dateBegan;
+    private Date dateEnded;
 
     RepairOrderStatus(StatusType statusType) throws IllegalArgumentException{
         try {
@@ -17,11 +32,11 @@ public class RepairOrderStatus {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Unknown status type: " + statusType);
         }
-        this.dateBegan = LocalDateTime.now(ZoneId.systemDefault());
+        this.dateBegan = new Date();
     }
 
     public void closeStatus() {
-        this.dateEnded = LocalDateTime.now(ZoneId.systemDefault());
+        this.dateEnded = new Date();
     }
 
     @Override

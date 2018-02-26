@@ -1,32 +1,64 @@
 package com.czajor.carserviceportal.repairorder;
 
 import com.czajor.carserviceportal.car.Car;
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public @Data
-class RepairOrder {
-    private static int orderID = 0;
-    private final int thisOrderID;
+@Entity
+@Table(name = "REPAIR_ORDERS")
+@NoArgsConstructor
+@Getter
+@Setter(AccessLevel.PRIVATE)
+public final class RepairOrder {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+
+    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinTable
+            (
+            name = "REPAIR_ORDER_STATUS_HISTORY",
+            joinColumns = {
+                    @JoinColumn(name = "repair_order_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "previous_status_id", referencedColumnName = "id")
+            }
+    )
     private List<RepairOrderStatus> previousStatusList = new ArrayList<>();
+
+    @NotNull
+    @OneToOne
     private RepairOrderStatus currentStatus;
-    private final Set<RepairOrderType> repairOrderType = new HashSet<>();
-    private final Car car;
-    private final String description;
-    private final LocalDateTime dateOfCreation;
-    private LocalDateTime dateOfReadyToCollect;
+
+    @ElementCollection(targetClass = RepairOrderType.class)
+    @JoinTable(name = "REPAIR_ORDER_TYPES", joinColumns = @JoinColumn(name = "id"))
+    @Enumerated(EnumType.STRING)
+    private Set<RepairOrderType> repairOrderType = new HashSet<>();
+
+    @NotNull
+    @OneToOne(orphanRemoval = true)
+    private Car car;
+
+    @NotNull
+    private String description;
+
+    @NotNull
+    private Date dateOfCreation;
 
     public RepairOrder(Car car, String description, RepairOrderType... repairOrderType) {
-        this.thisOrderID = orderID++;
         this.currentStatus = new RepairOrderStatus(StatusType.PREPARED);
         this.repairOrderType.addAll(Arrays.asList(repairOrderType));
         this.car = car;
         this.description = description;
-        this.dateOfCreation = LocalDateTime.now(ZoneId.systemDefault());
+        this.dateOfCreation = new Date();
     }
 
     public void changeStatus(StatusType status) {
@@ -43,7 +75,6 @@ class RepairOrder {
 
         RepairOrder that = (RepairOrder) o;
 
-        if (thisOrderID != that.thisOrderID) return false;
         if (!currentStatus.equals(that.currentStatus)) return false;
         if (repairOrderType != null ? !repairOrderType.equals(that.repairOrderType) : that.repairOrderType != null)
             return false;
@@ -53,17 +84,17 @@ class RepairOrder {
 
     @Override
     public int hashCode() {
-        return thisOrderID;
+        return id;
     }
 
     @Override
     public String toString() {
         return "Order info: " +
-                "\n     id: " + thisOrderID +
+                "\n     id: " + id +
                 "\n     current status: " + currentStatus.getStatusType() +
                 "\n     type: " + repairOrderType +
                 "\n     description: " + description +
-                "\n     created: " + dateOfCreation.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
+                "\n     created: " + dateOfCreation +
                 "\n\nCustomer: " + car.getCustomer();
     }
 }
