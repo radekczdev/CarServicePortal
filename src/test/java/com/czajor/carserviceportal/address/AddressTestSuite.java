@@ -1,7 +1,7 @@
 package com.czajor.carserviceportal.address;
 
 import com.czajor.carserviceportal.RepairOrderGenerator;
-import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
+import com.czajor.carserviceportal.RepairOrderHandler;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

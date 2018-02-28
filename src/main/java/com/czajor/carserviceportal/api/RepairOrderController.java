@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.crud;
+package com.czajor.carserviceportal.api;
 
 public class RepairOrderController {
 //    public List<RepairOrderDto> getRepairOrders();

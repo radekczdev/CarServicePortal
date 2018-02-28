@@ -1,4 +1,7 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal;
+
+import com.czajor.carserviceportal.repairorder.RepairOrder;
+import com.czajor.carserviceportal.repairorder.RepairOrderType;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

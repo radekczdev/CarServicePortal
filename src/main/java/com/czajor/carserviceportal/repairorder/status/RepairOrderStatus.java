@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal.repairorder.status;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -26,7 +24,7 @@ public class RepairOrderStatus {
     private Date dateBegan;
     private Date dateEnded;
 
-    RepairOrderStatus(StatusType statusType) throws IllegalArgumentException{
+    public RepairOrderStatus(StatusType statusType) throws IllegalArgumentException{
         try {
             this.statusType = statusType;
         } catch (IllegalArgumentException e) {

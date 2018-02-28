@@ -5,7 +5,7 @@ import com.czajor.carserviceportal.address.Address;
 import com.czajor.carserviceportal.address.AddressRepository;
 import com.czajor.carserviceportal.customer.Customer;
 import com.czajor.carserviceportal.customer.CustomerRepository;
-import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
+import com.czajor.carserviceportal.RepairOrderHandler;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

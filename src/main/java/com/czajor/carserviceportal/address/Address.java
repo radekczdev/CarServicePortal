@@ -15,15 +15,21 @@ public final class Address {
     @GeneratedValue
     @Column(name = "id")
     private int id;
+
     @NotNull
     private String city;
+
     @NotNull
     private String street;
+
     @NotNull
     private int homeNumber;
-    private int flatNumber;
+
+    private int flatNumber = NO_FLAT_NUMBER;
+
     @NotNull
     private String postCode;
+
     private static final int NO_FLAT_NUMBER = 0;
 
     public static class Builder {

@@ -1,9 +1,7 @@
 package com.czajor.carserviceportal;
 
 import com.czajor.carserviceportal.repairorder.RepairOrder;
-import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
-import com.czajor.carserviceportal.repairorder.RepairOrderStatus;
-import com.czajor.carserviceportal.repairorder.StatusType;
+import com.czajor.carserviceportal.repairorder.status.StatusType;
 import org.junit.Assert;
 import org.junit.Test;
 

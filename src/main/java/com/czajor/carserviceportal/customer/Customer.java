@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,17 +23,25 @@ public final class Customer {
     @GeneratedValue
     @Column(name = "id")
     private int id;
+
     @NotNull
     private String name;
+
     @NotNull
     private String surname;
+
     @NotNull
     private String email;
+
     @NotNull
     private String phoneNumber;
+
     @NotNull
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
     private Address address;
+
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,

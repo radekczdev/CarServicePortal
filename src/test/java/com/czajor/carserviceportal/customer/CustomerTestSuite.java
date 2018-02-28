@@ -5,7 +5,7 @@ import com.czajor.carserviceportal.address.Address;
 import com.czajor.carserviceportal.address.AddressRepository;
 import com.czajor.carserviceportal.car.Car;
 import com.czajor.carserviceportal.car.CarRepository;
-import com.czajor.carserviceportal.repairorder.RepairOrderHandler;
+import com.czajor.carserviceportal.RepairOrderHandler;
 import org.hibernate.Hibernate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.transaction.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

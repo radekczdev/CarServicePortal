@@ -2,6 +2,7 @@ package com.czajor.carserviceportal.car;
 
 import com.czajor.carserviceportal.customer.Customer;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,19 +17,28 @@ public final class Car {
     @GeneratedValue
     @Column(name="id", unique = true)
     private int id;
+
     @NotNull
     private String brand;
+
     @NotNull
     private String model;
+
     @NotNull
     private int buildYear;
+
     @NotNull
     private String engine;
+
     @NotNull
     private double engineVolume;
+
     @NotNull
     private String licensePlate;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinTable(name = "cars_of_customer",
             joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id")

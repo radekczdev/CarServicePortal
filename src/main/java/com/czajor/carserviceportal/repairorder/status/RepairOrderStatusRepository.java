@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal.repairorder.status;
 
 import org.springframework.data.repository.CrudRepository;
 

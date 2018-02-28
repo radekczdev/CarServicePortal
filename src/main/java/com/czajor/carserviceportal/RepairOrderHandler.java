@@ -1,4 +1,6 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal;
+
+import com.czajor.carserviceportal.repairorder.RepairOrder;
 
 import java.util.HashMap;
 import java.util.Map;

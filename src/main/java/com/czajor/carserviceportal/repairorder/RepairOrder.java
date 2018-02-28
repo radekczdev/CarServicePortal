@@ -1,13 +1,16 @@
 package com.czajor.carserviceportal.repairorder;
 
 import com.czajor.carserviceportal.car.Car;
-import lombok.*;
+import com.czajor.carserviceportal.repairorder.status.RepairOrderStatus;
+import com.czajor.carserviceportal.repairorder.status.StatusType;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Entity
@@ -21,30 +24,39 @@ public final class RepairOrder {
     @Column(name = "id")
     private int id;
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinTable
-            (
-            name = "REPAIR_ORDER_STATUS_HISTORY",
-            joinColumns = {
-                    @JoinColumn(name = "repair_order_id", referencedColumnName = "id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "previous_status_id", referencedColumnName = "id")
-            }
-    )
+    @OneToMany(
+            orphanRemoval = true,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    @JoinTable(
+                    name = "REPAIR_ORDER_STATUS_HISTORY",
+                    joinColumns = {
+                            @JoinColumn(name = "repair_order_id", referencedColumnName = "id")
+                    },
+                    inverseJoinColumns = {
+                            @JoinColumn(name = "previous_status_id", referencedColumnName = "id")
+                    }
+            )
     private List<RepairOrderStatus> previousStatusList = new ArrayList<>();
 
     @NotNull
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private RepairOrderStatus currentStatus;
 
+    @NotNull
     @ElementCollection(targetClass = RepairOrderType.class)
     @JoinTable(name = "REPAIR_ORDER_TYPES", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
     private Set<RepairOrderType> repairOrderType = new HashSet<>();
 
     @NotNull
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
     private Car car;
 
     @NotNull
