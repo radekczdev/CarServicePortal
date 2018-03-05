@@ -2,7 +2,6 @@ package com.czajor.carserviceportal.car;
 
 import com.czajor.carserviceportal.RepairOrderGenerator;
 import com.czajor.carserviceportal.address.Address;
-import com.czajor.carserviceportal.address.AddressRepository;
 import com.czajor.carserviceportal.customer.Customer;
 import com.czajor.carserviceportal.customer.CustomerRepository;
 import com.czajor.carserviceportal.RepairOrderHandler;
@@ -19,8 +18,6 @@ public class CarTestSuite {
     @Autowired
     private CarRepository carDao;
     @Autowired
-    private AddressRepository addressDao;
-    @Autowired
     private CustomerRepository customerDao;
 
     @Test
@@ -28,16 +25,12 @@ public class CarTestSuite {
         // Given
         RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderGenerator.prepare();
-        orderHandler.addOrder(orderGenerator.getOrder());
+        orderHandler.addOrder(orderGenerator.generateSampleOrder());
 
         Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
         Car car = customer.getCarList().get(0);
-        Address address = customer.getAddress();
 
         // When
-        addressDao.save(address);
-        customerDao.save(customer);
         carDao.save(car);
 
         // Then

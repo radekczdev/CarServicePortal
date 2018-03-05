@@ -7,11 +7,7 @@ import com.czajor.carserviceportal.repairorder.RepairOrder;
 import com.czajor.carserviceportal.repairorder.RepairOrderType;
 
 public class RepairOrderGenerator {
-    private Car car;
-    private RepairOrderType[] orderType = new RepairOrderType[2];
-    private String description;
-
-    public void prepare() {
+    public RepairOrder generateSampleOrder() {
         Address address = new Address.Builder()
                 .city("Warszawa")
                 .street("Al. Jerozolimskie")
@@ -20,16 +16,14 @@ public class RepairOrderGenerator {
                 .postCode("10-010")
                 .build();
         Customer customer = new Customer("John", "Doe", "j.doe@mail.com", "+48758421015", address);
-        car = new Car("FORD", "MONDEO", 2015, "diesel", 2.0, "TK1234F", customer);
-        orderType[0] = RepairOrderType.DAILY_SERVICE;
-        orderType[1] = RepairOrderType.MECHANICAL;
-
+        Car car = new Car("FORD", "MONDEO", 2015, "diesel", 2.0, "TK1234F", customer);
         customer.addCar(car);
 
-        description = "TODO: change oil and filters, check and change light bulbs";
+        String description = "TODO: change oil and filters, check and change light bulbs";
+        return new RepairOrder(
+                car,
+                description,
+                RepairOrderType.DAILY_SERVICE, RepairOrderType.MECHANICAL);
     }
 
-    public RepairOrder getOrder() {
-        return new RepairOrder(car, description, orderType);
-    }
 }

@@ -24,8 +24,7 @@ public class RepairOrderTestSuite {
         // Given
         RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderGenerator.prepare();
-        orderHandler.addOrder(orderGenerator.getOrder());
+        orderHandler.addOrder(orderGenerator.generateSampleOrder());
 
         Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
         Car car2 = new Car("brand", "model", 1995, "diesel",1.9, "WU12334", customer);
@@ -54,8 +53,7 @@ public class RepairOrderTestSuite {
         // Given
         RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderGenerator.prepare();
-        orderHandler.addOrder(orderGenerator.getOrder());
+        orderHandler.addOrder(orderGenerator.generateSampleOrder());
         RepairOrder order = orderHandler.getOrdersSet().get(0);
 
         System.out.println(order);
@@ -67,9 +65,7 @@ public class RepairOrderTestSuite {
         StatusType currentOrderStatus = order.getCurrentStatus().getStatusType();
         int statusChangesNumber = order.getPreviousStatusList().size();
 
-        for(RepairOrderStatus status : order.getPreviousStatusList()) {
-            System.out.println(status);
-        }
+        order.getPreviousStatusList().forEach(System.out::println);
 
         // Then
         Assert.assertSame(StatusType.READY,currentOrderStatus);

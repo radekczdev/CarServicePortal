@@ -11,8 +11,8 @@ public class CarServicePortalTestSuite {
         // Given
         RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderGenerator.prepare();
-        orderHandler.addOrder(orderGenerator.getOrder());
+        orderGenerator.generateSampleOrder();
+        orderHandler.addOrder(orderGenerator.generateSampleOrder());
         RepairOrder order = orderHandler.getOrdersSet().get(0);
 
         System.out.println(order);

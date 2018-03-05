@@ -36,6 +36,7 @@ public final class Car {
     @NotNull
     private String licensePlate;
 
+    @NotNull
     @ManyToOne(
             cascade = CascadeType.ALL
     )

@@ -6,5 +6,5 @@ public class RepairOrderController {
 //    public void changeStatus(int id);
 //    public void createRepairOrder();
 //    public void createCar();
-//    public void createCustomer();
+//    pu*blic void createCustomer();
 }
