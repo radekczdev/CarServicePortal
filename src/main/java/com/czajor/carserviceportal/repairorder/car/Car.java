@@ -1,8 +1,7 @@
-package com.czajor.carserviceportal.car;
+package com.czajor.carserviceportal.repairorder.car;
 
-import com.czajor.carserviceportal.customer.Customer;
+import com.czajor.carserviceportal.repairorder.customer.Customer;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

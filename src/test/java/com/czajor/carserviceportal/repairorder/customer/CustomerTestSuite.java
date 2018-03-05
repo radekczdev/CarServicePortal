@@ -1,10 +1,8 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.repairorder.customer;
 
-import com.czajor.carserviceportal.RepairOrderGenerator;
-import com.czajor.carserviceportal.RepairOrderHandler;
-import com.czajor.carserviceportal.car.Car;
-import com.czajor.carserviceportal.car.CarRepository;
-import org.hibernate.Hibernate;
+import com.czajor.carserviceportal.repairorder.RepairOrder;
+import com.czajor.carserviceportal.samples.RepairOrderGenerator;
+import com.czajor.carserviceportal.repairorder.car.Car;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -26,11 +23,10 @@ public class CustomerTestSuite {
     @Transactional
     public void testCustomerDao() {
         // Given
-        RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderHandler.addOrder(orderGenerator.generateSampleOrder());
+        RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
-        Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
+        Customer customer = repairOrder.getCar().getCustomer();
         Car car2 = new Car("brand", "model", 1995, "diesel",1.9, "WU12334", customer);
         customer.addCar(car2);
 

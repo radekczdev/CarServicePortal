@@ -1,11 +1,11 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.repairorder.customer;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
-@Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+    @Override
+    List<Customer> findAll();
 }

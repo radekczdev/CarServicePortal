@@ -1,13 +1,12 @@
 package com.czajor.carserviceportal.repairorder;
 
-import com.czajor.carserviceportal.car.Car;
+import com.czajor.carserviceportal.repairorder.car.Car;
 import com.czajor.carserviceportal.repairorder.status.RepairOrderStatus;
 import com.czajor.carserviceportal.repairorder.status.StatusType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

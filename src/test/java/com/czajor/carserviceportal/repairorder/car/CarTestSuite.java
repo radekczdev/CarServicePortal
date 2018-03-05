@@ -1,10 +1,10 @@
-package com.czajor.carserviceportal.car;
+package com.czajor.carserviceportal.repairorder.car;
 
-import com.czajor.carserviceportal.RepairOrderGenerator;
-import com.czajor.carserviceportal.address.Address;
-import com.czajor.carserviceportal.customer.Customer;
-import com.czajor.carserviceportal.customer.CustomerRepository;
-import com.czajor.carserviceportal.RepairOrderHandler;
+import com.czajor.carserviceportal.repairorder.RepairOrder;
+import com.czajor.carserviceportal.samples.RepairOrderGenerator;
+import com.czajor.carserviceportal.repairorder.customer.Customer;
+import com.czajor.carserviceportal.repairorder.customer.CustomerRepository;
+import com.czajor.carserviceportal.repairorder.customer.CustomerService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +23,10 @@ public class CarTestSuite {
     @Test
     public void testCarDao() {
         // Given
-        RepairOrderHandler orderHandler = new RepairOrderHandler();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderHandler.addOrder(orderGenerator.generateSampleOrder());
+        RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
-        Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
+        Customer customer = repairOrder.getCar().getCustomer();
         Car car = customer.getCarList().get(0);
 
         // When

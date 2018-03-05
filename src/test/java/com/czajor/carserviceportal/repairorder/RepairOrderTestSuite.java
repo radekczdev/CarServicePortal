@@ -1,10 +1,9 @@
 package com.czajor.carserviceportal.repairorder;
 
-import com.czajor.carserviceportal.RepairOrderGenerator;
-import com.czajor.carserviceportal.RepairOrderHandler;
-import com.czajor.carserviceportal.car.Car;
-import com.czajor.carserviceportal.customer.Customer;
-import com.czajor.carserviceportal.repairorder.status.RepairOrderStatus;
+import com.czajor.carserviceportal.samples.RepairOrderGenerator;
+import com.czajor.carserviceportal.repairorder.customer.CustomerService;
+import com.czajor.carserviceportal.repairorder.car.Car;
+import com.czajor.carserviceportal.repairorder.customer.Customer;
 import com.czajor.carserviceportal.repairorder.status.StatusType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,14 +21,13 @@ public class RepairOrderTestSuite {
     @Test
     public void testRepairOrderRepository() {
         // Given
-        RepairOrderHandler orderHandler = new RepairOrderHandler();
+        CustomerService orderHandler = new CustomerService();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderHandler.addOrder(orderGenerator.generateSampleOrder());
+        RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
-        Customer customer = orderHandler.getOrder(0).getCar().getCustomer();
+        Customer customer = repairOrder.getCar().getCustomer();
         Car car2 = new Car("brand", "model", 1995, "diesel",1.9, "WU12334", customer);
         customer.addCar(car2);
-        RepairOrder repairOrder = orderHandler.getOrder(0);
 
         repairOrder.changeStatus(StatusType.QUEUE);
         repairOrder.changeStatus(StatusType.READY);
@@ -51,21 +49,20 @@ public class RepairOrderTestSuite {
     @Test
     public void changeOrderStatus() {
         // Given
-        RepairOrderHandler orderHandler = new RepairOrderHandler();
+        CustomerService orderHandler = new CustomerService();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
-        orderHandler.addOrder(orderGenerator.generateSampleOrder());
-        RepairOrder order = orderHandler.getOrdersSet().get(0);
+        RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
-        System.out.println(order);
+        System.out.println(repairOrder);
 
         // When
-        order.changeStatus(StatusType.QUEUE);
-        order.changeStatus(StatusType.WORKSHOP);
-        order.changeStatus(StatusType.READY);
-        StatusType currentOrderStatus = order.getCurrentStatus().getStatusType();
-        int statusChangesNumber = order.getPreviousStatusList().size();
+        repairOrder.changeStatus(StatusType.QUEUE);
+        repairOrder.changeStatus(StatusType.WORKSHOP);
+        repairOrder.changeStatus(StatusType.READY);
+        StatusType currentOrderStatus = repairOrder.getCurrentStatus().getStatusType();
+        int statusChangesNumber = repairOrder.getPreviousStatusList().size();
 
-        order.getPreviousStatusList().forEach(System.out::println);
+        repairOrder.getPreviousStatusList().forEach(System.out::println);
 
         // Then
         Assert.assertSame(StatusType.READY,currentOrderStatus);

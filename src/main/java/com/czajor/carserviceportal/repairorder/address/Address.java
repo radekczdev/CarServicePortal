@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.address;
+package com.czajor.carserviceportal.repairorder.address;
 
 import lombok.*;
 
@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ADDRESSES")
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter(AccessLevel.PRIVATE)

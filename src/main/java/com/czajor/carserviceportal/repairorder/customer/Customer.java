@@ -1,12 +1,8 @@
-package com.czajor.carserviceportal.customer;
+package com.czajor.carserviceportal.repairorder.customer;
 
-import com.czajor.carserviceportal.address.Address;
-import com.czajor.carserviceportal.car.Car;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Cascade;
+import com.czajor.carserviceportal.repairorder.address.Address;
+import com.czajor.carserviceportal.repairorder.car.Car;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "CUSTOMERS")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter(AccessLevel.PRIVATE)
 public final class Customer {
