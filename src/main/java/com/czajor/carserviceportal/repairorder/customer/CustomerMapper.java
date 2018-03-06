@@ -19,6 +19,18 @@ public class CustomerMapper {
         );
     }
 
+    public CustomerDto mapToCustomerDto(final Customer customer) {
+        return new CustomerDto(
+                customer.getId(),
+                customer.getName(),
+                customer.getSurname(),
+                customer.getEmail(),
+                customer.getPhoneNumber(),
+                customer.getAddress(),
+                customer.getCarList()
+        );
+    }
+
     public List<CustomerDto> mapToCustomerDtoList(final List<Customer> customerList) {
         return customerList.stream()
                 .map(c -> new CustomerDto(

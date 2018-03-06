@@ -1,13 +1,8 @@
 package com.czajor.carserviceportal.api;
 
-import com.czajor.carserviceportal.repairorder.customer.CustomerDto;
-import com.czajor.carserviceportal.repairorder.customer.CustomerMapper;
-import com.czajor.carserviceportal.repairorder.customer.CustomerService;
+import com.czajor.carserviceportal.repairorder.customer.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +22,17 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "saveCustomer", consumes = APPLICATION_JSON_VALUE)
-    public void saveCustomer(@RequestBody CustomerDto customerDto) {
-        customerService.saveCustomer(customerMapper.mapToCustomer(customerDto));
+    public Customer saveCustomer(@RequestBody CustomerDto customerDto) {
+        return customerService.saveCustomer(customerMapper.mapToCustomer(customerDto));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "getCustomer")
+    public CustomerDto getCustomer(@RequestParam final int id) throws CustomerNotFoundException {
+        return customerMapper.mapToCustomerDto(customerService.getCustomer(id).orElseThrow(CustomerNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteCustomer")
+    public void deleteCustomer(@RequestParam final int id) {
+        customerService.deleteCustomer(id);
     }
 }
