@@ -26,20 +26,14 @@ public class CustomerMapper {
                 customer.getSurname(),
                 customer.getEmail(),
                 customer.getPhoneNumber(),
-                customer.getAddress()
+                customer.getAddress(),
+                customer.getCarList()
         );
     }
 
     public List<CustomerDto> mapToCustomerDtoList(final List<Customer> customerList) {
         return customerList.stream()
-                .map(c -> new CustomerDto(
-                        c.getId(),
-                        c.getName(),
-                        c.getSurname(),
-                        c.getEmail(),
-                        c.getPhoneNumber(),
-                        c.getAddress()
-                ))
+                .map(c -> mapToCustomerDto(c))
                 .collect(Collectors.toList());
     }
 }
