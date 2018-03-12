@@ -16,7 +16,8 @@ public class RepairOrderGenerator {
                 .postCode("10-010")
                 .build();
         Customer customer = new Customer("John", "Doe", "j.doe@mail.com", "+48758421015", address);
-        Car car = new Car("FORD", "MONDEO", 2015, "diesel", 2.0, "TK1234F", customer);
+        Car car = new Car("TK1234F", "FORD", "MONDEO", 2015, "diesel", 2.0);
+        car.addCustomer(customer);
         customer.addCar(car);
 
         String description = "TODO: change oil and filters, check and change light bulbs";

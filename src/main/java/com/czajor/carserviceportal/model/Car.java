@@ -1,6 +1,5 @@
 package com.czajor.carserviceportal.model;
 
-import com.czajor.carserviceportal.model.Customer;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,9 +12,8 @@ import javax.validation.constraints.NotNull;
 @Setter(AccessLevel.PRIVATE)
 public final class Car {
     @Id
-    @GeneratedValue
     @Column(name="id", unique = true)
-    private int id;
+    private String id;
 
     @NotNull
     private String brand;
@@ -33,9 +31,6 @@ public final class Car {
     private double engineVolume;
 
     @NotNull
-    private String licensePlate;
-
-    @NotNull
     @ManyToOne(
             cascade = CascadeType.ALL
     )
@@ -45,15 +40,19 @@ public final class Car {
     )
     private Customer customer;
 
-    public Car(String brand, String model, int buildYear, String engine, double engineVolume, String licensePlate, Customer customer) {
+    public Car(String licensePlate, String brand, String model, int buildYear, String engine, double engineVolume) {
+        this.id = licensePlate;
         this.brand = brand;
         this.model = model;
         this.buildYear = buildYear;
         this.engine = engine;
         this.engineVolume = engineVolume;
-        this.licensePlate = licensePlate;
+    }
+
+    public void addCustomer (Customer customer) {
         this.customer = customer;
     }
+
 
     @Override
     public String toString() {
@@ -61,6 +60,6 @@ public final class Car {
                 model + " " +
                 buildYear + " " +
                 ", engine: " + engineVolume + " " +
-                engine + ", license plate number: " + licensePlate;
+                engine + ", license plate number: " + id;
     }
 }

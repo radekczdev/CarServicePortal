@@ -2,6 +2,7 @@ package com.czajor.carserviceportal.mapper;
 
 import com.czajor.carserviceportal.domain.CustomerDto;
 import com.czajor.carserviceportal.model.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,6 +10,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomerMapper {
+    @Autowired
+    private CarMapper carMapper;
+
     public Customer mapToCustomer(final CustomerDto customerDto) {
         return new Customer(
                 customerDto.getId(),
@@ -29,13 +33,13 @@ public class CustomerMapper {
                 customer.getEmail(),
                 customer.getPhoneNumber(),
                 customer.getAddress(),
-                customer.getCarList()
+                carMapper.mapToCarDtoList(customer.getCarList())
         );
     }
 
     public List<CustomerDto> mapToCustomerDtoList(final List<Customer> customerList) {
         return customerList.stream()
-                .map(c -> mapToCustomerDto(c))
+                .map(this::mapToCustomerDto)
                 .collect(Collectors.toList());
     }
 }

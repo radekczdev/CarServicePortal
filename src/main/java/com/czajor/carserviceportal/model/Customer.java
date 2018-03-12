@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -55,6 +56,15 @@ public final class Customer {
 
     public void addCar(Car car) {
         this.carList.add(car);
+    }
+
+    // NOT WORKING YET
+    public void removeCar(String licensePlate) {
+        for(Car car : this.carList) {
+            if(car.getId().equals(licensePlate)){
+                this.carList.remove(car);
+            }
+        }
     }
 
     @Override
