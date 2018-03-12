@@ -1,10 +1,11 @@
 package com.czajor.carserviceportal.repairorder.car;
 
-import com.czajor.carserviceportal.repairorder.RepairOrder;
+import com.czajor.carserviceportal.model.Car;
+import com.czajor.carserviceportal.model.RepairOrder;
+import com.czajor.carserviceportal.repository.CarRepository;
 import com.czajor.carserviceportal.samples.RepairOrderGenerator;
-import com.czajor.carserviceportal.repairorder.customer.Customer;
-import com.czajor.carserviceportal.repairorder.customer.CustomerRepository;
-import com.czajor.carserviceportal.repairorder.customer.CustomerService;
+import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.repository.CustomerRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

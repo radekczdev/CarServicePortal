@@ -1,10 +1,10 @@
 package com.czajor.carserviceportal.samples;
 
-import com.czajor.carserviceportal.repairorder.address.Address;
-import com.czajor.carserviceportal.repairorder.car.Car;
-import com.czajor.carserviceportal.repairorder.customer.Customer;
-import com.czajor.carserviceportal.repairorder.RepairOrder;
-import com.czajor.carserviceportal.repairorder.RepairOrderType;
+import com.czajor.carserviceportal.model.Address;
+import com.czajor.carserviceportal.model.Car;
+import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.model.RepairOrder;
+import com.czajor.carserviceportal.model.RepairOrderType;
 
 public class RepairOrderGenerator {
     public RepairOrder generateSampleOrder() {

@@ -1,5 +1,7 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.service;
 
+import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

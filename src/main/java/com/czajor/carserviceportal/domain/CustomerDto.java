@@ -1,6 +1,6 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.domain;
 
-import com.czajor.carserviceportal.repairorder.address.Address;
+import com.czajor.carserviceportal.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

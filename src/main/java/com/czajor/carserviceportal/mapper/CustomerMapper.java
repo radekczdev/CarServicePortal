@@ -1,5 +1,7 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.mapper;
 
+import com.czajor.carserviceportal.domain.CustomerDto;
+import com.czajor.carserviceportal.model.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

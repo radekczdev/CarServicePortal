@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder.status;
+package com.czajor.carserviceportal.model;
 
 import lombok.AccessLevel;
 import lombok.Getter;

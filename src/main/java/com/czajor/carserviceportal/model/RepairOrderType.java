@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal.model;
 
 public enum RepairOrderType {
     MECHANICAL,

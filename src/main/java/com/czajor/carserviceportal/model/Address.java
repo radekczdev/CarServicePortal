@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder.address;
+package com.czajor.carserviceportal.model;
 
 import lombok.*;
 

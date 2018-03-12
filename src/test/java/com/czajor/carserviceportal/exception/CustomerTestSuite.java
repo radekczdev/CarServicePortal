@@ -1,8 +1,10 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.exception;
 
-import com.czajor.carserviceportal.repairorder.RepairOrder;
+import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.model.RepairOrder;
+import com.czajor.carserviceportal.repository.CustomerRepository;
 import com.czajor.carserviceportal.samples.RepairOrderGenerator;
-import com.czajor.carserviceportal.repairorder.car.Car;
+import com.czajor.carserviceportal.model.Car;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

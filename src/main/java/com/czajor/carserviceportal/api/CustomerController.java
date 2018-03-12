@@ -1,6 +1,11 @@
 package com.czajor.carserviceportal.api;
 
+import com.czajor.carserviceportal.domain.CustomerDto;
+import com.czajor.carserviceportal.exception.CustomerNotFoundException;
+import com.czajor.carserviceportal.mapper.CustomerMapper;
+import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.repairorder.customer.*;
+import com.czajor.carserviceportal.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

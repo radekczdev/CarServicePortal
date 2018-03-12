@@ -1,5 +1,6 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.repository;
 
+import com.czajor.carserviceportal.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

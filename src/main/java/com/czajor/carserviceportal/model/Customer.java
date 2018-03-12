@@ -1,7 +1,5 @@
-package com.czajor.carserviceportal.repairorder.customer;
+package com.czajor.carserviceportal.model;
 
-import com.czajor.carserviceportal.repairorder.address.Address;
-import com.czajor.carserviceportal.repairorder.car.Car;
 import lombok.*;
 
 import javax.persistence.*;

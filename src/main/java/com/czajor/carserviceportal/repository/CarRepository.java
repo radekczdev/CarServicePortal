@@ -1,5 +1,6 @@
-package com.czajor.carserviceportal.repairorder.car;
+package com.czajor.carserviceportal.repository;
 
+import com.czajor.carserviceportal.model.Car;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

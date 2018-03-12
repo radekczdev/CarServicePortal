@@ -1,4 +1,4 @@
-package com.czajor.carserviceportal.repairorder.status;
+package com.czajor.carserviceportal.model;
 
 public enum StatusType {
     PREPARED,

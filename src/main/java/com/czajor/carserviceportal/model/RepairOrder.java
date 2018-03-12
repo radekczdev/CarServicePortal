@@ -1,8 +1,5 @@
-package com.czajor.carserviceportal.repairorder;
+package com.czajor.carserviceportal.model;
 
-import com.czajor.carserviceportal.repairorder.car.Car;
-import com.czajor.carserviceportal.repairorder.status.RepairOrderStatus;
-import com.czajor.carserviceportal.repairorder.status.StatusType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

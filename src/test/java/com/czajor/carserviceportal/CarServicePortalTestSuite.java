@@ -1,8 +1,7 @@
 package com.czajor.carserviceportal;
 
-import com.czajor.carserviceportal.repairorder.RepairOrder;
-import com.czajor.carserviceportal.repairorder.customer.CustomerService;
-import com.czajor.carserviceportal.repairorder.status.StatusType;
+import com.czajor.carserviceportal.model.RepairOrder;
+import com.czajor.carserviceportal.model.StatusType;
 import com.czajor.carserviceportal.samples.RepairOrderGenerator;
 import org.junit.Assert;
 import org.junit.Test;
