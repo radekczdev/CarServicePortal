@@ -1,12 +1,9 @@
 package com.czajor.carserviceportal.repairorder.customer;
 
 import com.czajor.carserviceportal.repairorder.address.Address;
-import com.czajor.carserviceportal.repairorder.car.Car;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +15,4 @@ public class CustomerDto {
     private String email;
     private String phoneNumber;
     private Address address;
-    private List<Car> carList;
 }

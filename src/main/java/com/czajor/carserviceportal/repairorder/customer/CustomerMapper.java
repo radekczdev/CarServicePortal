@@ -15,7 +15,7 @@ public class CustomerMapper {
                 customerDto.getEmail(),
                 customerDto.getPhoneNumber(),
                 customerDto.getAddress(),
-                customerDto.getCarList()
+                null
         );
     }
 
@@ -26,8 +26,7 @@ public class CustomerMapper {
                 customer.getSurname(),
                 customer.getEmail(),
                 customer.getPhoneNumber(),
-                customer.getAddress(),
-                customer.getCarList()
+                customer.getAddress()
         );
     }
 
@@ -39,8 +38,7 @@ public class CustomerMapper {
                         c.getSurname(),
                         c.getEmail(),
                         c.getPhoneNumber(),
-                        c.getAddress(),
-                        c.getCarList()
+                        c.getAddress()
                 ))
                 .collect(Collectors.toList());
     }
