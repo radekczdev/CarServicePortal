@@ -60,11 +60,8 @@ public final class Customer {
 
     // NOT WORKING YET
     public void removeCar(String licensePlate) {
-        for(Car car : this.carList) {
-            if(car.getId().equals(licensePlate)){
-                this.carList.remove(car);
-            }
-        }
+        Car car = carList.stream().filter(c -> c.getId().equals(licensePlate)).findAny().get();
+        carList.remove(car);
     }
 
     @Override

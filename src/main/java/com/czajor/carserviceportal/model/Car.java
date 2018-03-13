@@ -31,9 +31,7 @@ public final class Car {
     private double engineVolume;
 
     @NotNull
-    @ManyToOne(
-            cascade = CascadeType.ALL
-    )
+    @ManyToOne
     @JoinTable(name = "cars_of_customer",
             joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id")

@@ -4,18 +4,24 @@ import com.czajor.carserviceportal.domain.CarDto;
 import com.czajor.carserviceportal.exception.CustomerNotFoundException;
 import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.repository.CarRepository;
 import com.czajor.carserviceportal.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CarRepository carRepository;
 
     public Customer saveCustomer(final Customer customer) {
         return customerRepository.save(customer);
