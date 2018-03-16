@@ -52,28 +52,10 @@ public class CustomerController {
         customerService.deleteCustomer(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCar")
-    public CarDto getCar(@RequestParam final String carId) {
-        return carMapper.mapToCarDto(customerService.getCar(carId));
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "getCars")
-    public List<CarDto> getCars() {
-        return carMapper.mapToCarDtoList(customerService.getCars());
-    }
 
     @RequestMapping(method = RequestMethod.POST, value = "addCar", consumes = APPLICATION_JSON_VALUE)
     public void addCar(@RequestParam final int customerId, @RequestBody final CarDto carDto) {
         customerService.addCar(customerId, carMapper.mapToCar(carDto));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "modifyCar", consumes = APPLICATION_JSON_VALUE)
-    public void modifyCar(@RequestBody final CarDto carDto) {
-        customerService.modifyCar(carMapper.mapToCar(carDto));
-    }
-
-    @RequestMapping(method = RequestMethod.PUT, value = "deleteCar")
-    public void deleteCar(@RequestParam final String licensePlate) {
-        customerService.deleteCar(licensePlate);
-    }
 }
