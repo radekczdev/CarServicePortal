@@ -23,7 +23,7 @@ public class CustomerService {
     @Autowired
     private CarRepository carRepository;
 
-    public Customer saveCustomer(final Customer customer) {
+    public Customer addCustomer(final Customer customer) {
         return customerRepository.save(customer);
     }
 
@@ -39,11 +39,20 @@ public class CustomerService {
             return new Customer();
         }
     }
-    public void deleteCustomer(int id) {
+
+    public void deleteCustomer(final int id) {
         customerRepository.deleteById(id);
     }
 
-    public void addCar(int customerId, Car car) {
+    public List<Car> getCars() {
+        return Optional.ofNullable(carRepository.findAll()).orElse(Collections.emptyList());
+    }
+
+    public Car getCar(final String carId) {
+        return carRepository.findById(carId).orElse(new Car());
+    }
+
+    public void addCar(final int customerId, Car car) {
         try {
             Customer customer = getCustomer(customerId);
             customer.addCar(car);
@@ -54,11 +63,15 @@ public class CustomerService {
         }
     }
 
-    public void removeCar(int customerId, String licensePlate) {
+    public void modifyCar(final Car car) {
+        String id = car.getId();
+        car.addCustomer(carRepository.findById(id).get().getCustomer());
+        carRepository.save(car);
+    }
+
+    public void deleteCar(final String licensePlate) {
         try {
-            Customer customer = getCustomer(customerId);
-            customer.removeCar(licensePlate);
-            customerRepository.save(customer);
+            carRepository.deleteById(licensePlate);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -23,12 +23,12 @@ public class RepairOrderTestSuite {
     @Test
     public void testRepairOrderRepository() {
         // Given
-        CustomerService orderHandler = new CustomerService();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
         RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
         Customer customer = repairOrder.getCar().getCustomer();
-        Car car2 = new Car("brand", "model", 1995, "diesel",1.9, "WU12334", customer);
+        Car car2 = new Car("WU12334", "brand", "model", 1995, "diesel",1.9);
+        car2.addCustomer(customer);
         customer.addCar(car2);
 
         repairOrder.changeStatus(StatusType.QUEUE);
@@ -40,7 +40,7 @@ public class RepairOrderTestSuite {
         // Then
         int id = repairOrder.getId();
         int amountOfStatusChanges = repairOrder.getPreviousStatusList().size();
-        RepairOrder repairOrderFromDb = repairOrderRepository.findOne(id);
+        RepairOrder repairOrderFromDb = repairOrderRepository.findById(id).orElse(new RepairOrder());
         Assert.assertEquals(id, repairOrderFromDb.getId());
         Assert.assertEquals(amountOfStatusChanges, repairOrderFromDb.getPreviousStatusList().size());
 
@@ -51,7 +51,6 @@ public class RepairOrderTestSuite {
     @Test
     public void changeOrderStatus() {
         // Given
-        CustomerService orderHandler = new CustomerService();
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
         RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 

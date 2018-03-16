@@ -29,7 +29,8 @@ public class CustomerTestSuite {
         RepairOrder repairOrder = orderGenerator.generateSampleOrder();
 
         Customer customer = repairOrder.getCar().getCustomer();
-        Car car2 = new Car("brand", "model", 1995, "diesel",1.9, "WU12334", customer);
+        Car car2 = new Car("WU12334","brand", "model", 1995, "diesel",1.9);
+        car2.addCustomer(customer);
         customer.addCar(car2);
 
         // When
@@ -38,7 +39,7 @@ public class CustomerTestSuite {
         // Then
         int id = customer.getId();
         int amountOfCars = customer.getCarList().size();
-        Customer readCustomerFromDb = customerDao.findOne(id);
+        Customer readCustomerFromDb = customerDao.findById(id).orElse(new Customer());
         List<Car> carList = readCustomerFromDb.getCarList();
         Assert.assertEquals(id, readCustomerFromDb.getId());
         Assert.assertEquals(amountOfCars, carList.size());

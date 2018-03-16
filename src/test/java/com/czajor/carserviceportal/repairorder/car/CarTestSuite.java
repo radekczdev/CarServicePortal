@@ -34,8 +34,8 @@ public class CarTestSuite {
         carDao.save(car);
 
         // Then
-        int id = car.getId();
-        Car readCarFromDb = carDao.findOne(id);
+        String id = car.getId();
+        Car readCarFromDb = carDao.findById(id).orElse(new Car());
         Assert.assertEquals(id, readCarFromDb.getId());
 
         // CleanUp

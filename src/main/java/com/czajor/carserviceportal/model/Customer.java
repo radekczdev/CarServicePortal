@@ -41,8 +41,8 @@ public final class Customer {
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
+            fetch = FetchType.LAZY
+//            orphanRemoval = true
     )
     private List<Car> carList = new ArrayList<>();
 
