@@ -61,9 +61,9 @@ public final class RepairOrder {
     @NotNull
     private Date dateOfCreation;
 
-    public RepairOrder(Car car, String description, RepairOrderType... repairOrderType) {
+    public RepairOrder(Car car, String description, Set<RepairOrderType> repairOrderTypes) {
         this.currentStatus = new RepairOrderStatus(StatusType.PREPARED);
-        this.repairOrderType.addAll(Arrays.asList(repairOrderType));
+        this.repairOrderType = repairOrderTypes;
         this.car = car;
         this.description = description;
         this.dateOfCreation = new Date();

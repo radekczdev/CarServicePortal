@@ -6,6 +6,10 @@ import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.model.RepairOrder;
 import com.czajor.carserviceportal.model.RepairOrderType;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class RepairOrderGenerator {
     public RepairOrder generateSampleOrder() {
         Address address = new Address.Builder()
@@ -24,7 +28,11 @@ public class RepairOrderGenerator {
         return new RepairOrder(
                 car,
                 description,
-                RepairOrderType.DAILY_SERVICE, RepairOrderType.MECHANICAL);
+                new HashSet<RepairOrderType>() {{
+                    add(RepairOrderType.DAILY_SERVICE);
+                    add(RepairOrderType.MECHANICAL);
+                }}
+                );
     }
 
 }
