@@ -1,6 +1,7 @@
 package com.czajor.carserviceportal.api;
 
 import com.czajor.carserviceportal.domain.RepairOrderDto;
+import com.czajor.carserviceportal.domain.StatusTypeDto;
 import com.czajor.carserviceportal.mapper.RepairOrderMapper;
 import com.czajor.carserviceportal.service.RepairOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class RepairOrderController {
     @RequestMapping(method = RequestMethod.GET, value = "getRepairOrders")
     public List<RepairOrderDto> getRepairOrders() {
         return repairOrderMapper.mapToRepairOrderDtoList(repairOrderService.getRepairOrders());
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "changeOrderStatus")
+    public void changeOrderStatus(@RequestBody final StatusTypeDto statusType, @RequestParam int repairOrderId) {
+        repairOrderService.changeRepairOrderStatus(repairOrderId, statusType);
     }
 }

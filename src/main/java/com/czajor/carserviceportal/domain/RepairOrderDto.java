@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 public class RepairOrderDto {
+    private int id;
     private String carId;
     private String description;
     private Set<RepairOrderType> repairOrderTypes;

@@ -6,8 +6,6 @@ import com.czajor.carserviceportal.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +28,7 @@ public class RepairOrderMapper {
 
     public RepairOrderDto mapToRepairOrderDto(final RepairOrder repairOrder) {
         return new RepairOrderDto(
+                repairOrder.getId(),
                 repairOrder.getCar().getId(),
                 repairOrder.getDescription(),
                 repairOrder.getRepairOrderType(),

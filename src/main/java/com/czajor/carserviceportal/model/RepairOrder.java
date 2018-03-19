@@ -71,8 +71,8 @@ public final class RepairOrder {
 
     public void changeStatus(StatusType status) {
         currentStatus.closeStatus();
-        previousStatusList.add(currentStatus);
         currentStatus = new RepairOrderStatus(status);
+        previousStatusList.add(currentStatus);
     }
 
     @Override

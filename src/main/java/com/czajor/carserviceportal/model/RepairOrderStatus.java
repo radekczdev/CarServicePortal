@@ -24,7 +24,7 @@ public class RepairOrderStatus {
     private Date dateBegan;
     private Date dateEnded;
 
-    public RepairOrderStatus(StatusType statusType) throws IllegalArgumentException{
+    public RepairOrderStatus(StatusType statusType) throws IllegalArgumentException {
         try {
             this.statusType = statusType;
         } catch (IllegalArgumentException e) {
