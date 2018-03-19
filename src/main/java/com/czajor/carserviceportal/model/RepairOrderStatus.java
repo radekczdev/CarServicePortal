@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.lang.String;
+
+import static java.lang.String.valueOf;
 
 @Entity
 @Table(name = "REPAIR_ORDER_STATUSES")
@@ -39,8 +42,7 @@ public class RepairOrderStatus {
 
     @Override
     public String toString() {
-        return "Status: " + statusType +
-                ", date began: " + dateBegan +
-                ", date ended: " + dateEnded;
+        return valueOf(statusType).toLowerCase() +
+                ", date began: " + dateBegan;
     }
 }

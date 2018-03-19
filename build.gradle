@@ -32,6 +32,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-mail:2.0.0.RELEASE')
+    compile('org.springframework:spring-context-support:5.0.4.RELEASE')
     compile('org.projectlombok:lombok')
     compile('org.postgresql:postgresql')
     compile('io.springfox:springfox-swagger2:2.8.0')

@@ -69,10 +69,14 @@ public final class RepairOrder {
         this.dateOfCreation = new Date();
     }
 
-    public void changeStatus(StatusType status) {
-        currentStatus.closeStatus();
-        currentStatus = new RepairOrderStatus(status);
-        previousStatusList.add(currentStatus);
+    public void changeStatus(StatusType status) throws IllegalArgumentException{
+        if(!status.equals(currentStatus.getStatusType())) {
+            currentStatus.closeStatus();
+            previousStatusList.add(currentStatus);
+            currentStatus = new RepairOrderStatus(status);
+        } else {
+            throw new IllegalArgumentException("Status already exists!");
+        }
     }
 
     @Override
