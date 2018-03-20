@@ -33,9 +33,10 @@ public class CustomerService {
 
     public Customer getCustomer(final int id) {
         try {
+            LOGGER.info("Preparing to get customer...");
             return customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
         } catch (Exception e) {
-            System.out.println(e + e.getMessage());
+            LOGGER.error("Getting customer thrown error: " + e + e.getMessage());
             return new Customer();
         }
     }
@@ -46,12 +47,13 @@ public class CustomerService {
 
     public void addCar(final int customerId, Car car) {
         try {
+            LOGGER.info("Preparing to add car to customer...");
             Customer customer = getCustomer(customerId);
             customer.addCar(car);
             car.addCustomer(customer);
             customerRepository.save(customer);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.error("Adding car thrown error: " + e + e.getMessage());
         }
     }
 }

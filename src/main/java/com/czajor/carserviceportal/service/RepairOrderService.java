@@ -8,10 +8,15 @@ import com.czajor.carserviceportal.model.RepairOrder;
 import com.czajor.carserviceportal.model.RepairOrderStatus;
 import com.czajor.carserviceportal.model.StatusType;
 import com.czajor.carserviceportal.repository.RepairOrderRepository;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 @Service
@@ -61,5 +66,34 @@ public class RepairOrderService {
 
     public List<RepairOrder> getRepairOrders() {
         return repairOrderRepository.findAll();
+    }
+
+    public ByteArrayOutputStream generateReport(int reportId) {
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
+
+        try {
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            RepairOrder repairOrder = repairOrderRepository.findById(reportId).orElseThrow(OrderNotFoundException::new);
+
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
+            contentStream.moveTo(10, 10);
+            contentStream.beginText();
+            contentStream.showText("REPAIR ORDER no " + repairOrder.getId());
+            contentStream.endText();
+            contentStream.close();
+
+            document.save(output);
+            document.close();
+        } catch (Exception e) {
+            System.out.println("generateReport thrown: " + e + e.getMessage());
+        }
+
+        return output;
     }
 }
