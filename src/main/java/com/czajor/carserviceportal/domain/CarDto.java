@@ -11,7 +11,7 @@ public class CarDto {
     private String licensePlate;
     private String brand;
     private String model;
-    private int buildYear;
+    private Integer buildYear;
     private String engine;
-    private double engineVolume;
+    private Double engineVolume;
 }

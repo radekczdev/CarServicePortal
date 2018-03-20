@@ -36,6 +36,11 @@ public class CarController {
         carService.modifyCar(carMapper.mapToCar(carDto));
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "modifyCarParameter", consumes = APPLICATION_JSON_VALUE)
+    public void modifyCarParameter(@RequestBody final CarDto carDto) {
+        carService.modifyCarParameter(carDto);
+    }
+
     @RequestMapping(method = RequestMethod.PUT, value = "deleteCar")
     public void deleteCar(@RequestParam final String licensePlate) {
         carService.deleteCar(licensePlate);
