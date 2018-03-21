@@ -49,21 +49,20 @@ public class CarService {
         LOGGER.info("Starting to modifyCarParameters by CarService...");
         try {
             Car car = carRepository.findById(carDto.getLicensePlate()).orElseThrow(CarNotFoundException::new);
-            if(carDto.getBuildYear() != null) {
-                car.setBuildYear(carDto.getBuildYear());
+
+            Field[] fields = car.getClass().getDeclaredFields();
+            Field[] fieldsDto = carDto.getClass().getDeclaredFields();
+
+            for(Field field : fields) {
+                field.setAccessible(true);
+                for(Field fieldDto : fieldsDto) {
+                    fieldDto.setAccessible(true);
+                        if(fieldDto.get(carDto) != null && field.getName().equals(fieldDto.getName())) {
+                            field.set(car, fieldDto.get(carDto));
+                    }
+                }
             }
-            if(carDto.getEngineVolume() != null) {
-                car.setEngineVolume(carDto.getEngineVolume());
-            }
-            if(carDto.getEngine() != null) {
-                car.setEngine(carDto.getEngine());
-            }
-            if(carDto.getModel() != null) {
-                car.setModel(carDto.getModel());
-            }
-            if(carDto.getBrand() != null) {
-                car.setBrand(carDto.getBrand());
-            }
+
             carRepository.save(car);
         } catch (Exception e) {
             LOGGER.error("modifyCarParameters thrown message: " + e);
