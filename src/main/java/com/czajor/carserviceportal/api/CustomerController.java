@@ -52,7 +52,6 @@ public class CustomerController {
         customerService.deleteCustomer(id);
     }
 
-
     @RequestMapping(method = RequestMethod.POST, value = "addCar", consumes = APPLICATION_JSON_VALUE)
     public void addCar(@RequestParam final int customerId, @RequestBody final CarDto carDto) {
         customerService.addCar(customerId, carMapper.mapToCar(carDto));

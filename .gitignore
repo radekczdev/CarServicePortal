@@ -2,6 +2,7 @@
 .out
 out/
 lib/
+.gradle/
 
 ### STS ###
 .apt_generated

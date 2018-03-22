@@ -2,6 +2,7 @@ package com.czajor.carserviceportal.service;
 
 import com.czajor.carserviceportal.domain.CarDto;
 import com.czajor.carserviceportal.exception.CarNotFoundException;
+import com.czajor.carserviceportal.mapper.SameFieldsMapper;
 import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.repository.CarRepository;
 import org.slf4j.Logger;
@@ -10,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
@@ -49,20 +47,7 @@ public class CarService {
         LOGGER.info("Starting to modifyCarParameters by CarService...");
         try {
             Car car = carRepository.findById(carDto.getLicensePlate()).orElseThrow(CarNotFoundException::new);
-
-            Field[] fields = car.getClass().getDeclaredFields();
-            Field[] fieldsDto = carDto.getClass().getDeclaredFields();
-
-            for(Field field : fields) {
-                field.setAccessible(true);
-                for(Field fieldDto : fieldsDto) {
-                    fieldDto.setAccessible(true);
-                        if(fieldDto.get(carDto) != null && field.getName().equals(fieldDto.getName())) {
-                            field.set(car, fieldDto.get(carDto));
-                    }
-                }
-            }
-
+            car = (Car) SameFieldsMapper.map(car, carDto);
             carRepository.save(car);
         } catch (Exception e) {
             LOGGER.error("modifyCarParameters thrown message: " + e);
