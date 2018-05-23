@@ -3,6 +3,7 @@
 out/
 lib/
 .gradle/
+bin/
 
 ### STS ###
 .apt_generated

@@ -1,5 +1,6 @@
 package com.czajor.carserviceportal.model;
 
+import com.czajor.carserviceportal.exception.CarHasOwnerException;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,8 +48,12 @@ public final class Car {
         this.engineVolume = engineVolume;
     }
 
-    public void addCustomer (Customer customer) {
-        this.customer = customer;
+    public void addCustomer (Customer customer) throws CarHasOwnerException {
+        if(this.customer == null) {
+            this.customer = customer;
+        } else {
+            throw new CarHasOwnerException();
+        }
     }
 
 

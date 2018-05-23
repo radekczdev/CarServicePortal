@@ -21,7 +21,11 @@ public class RepairOrderGenerator {
                 .build();
         Customer customer = new Customer("John", "Doe", "j.doe@mail.com", "+48758421015", address);
         Car car = new Car("TK1234F", "FORD", "MONDEO", 2015, "diesel", 2.0);
-        car.addCustomer(customer);
+        try {
+            car.addCustomer(customer);
+        } catch (Exception e) {
+            System.out.println("Adding customer for car thrown: " + e.getMessage());
+        }
         customer.addCar(car);
 
         String description = "TODO: change oil and filters, check and change light bulbs";

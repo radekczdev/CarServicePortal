@@ -23,6 +23,9 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CarService carService;
+
     public Customer addCustomer(final Customer customer) {
         return customerRepository.save(customer);
     }
@@ -45,12 +48,13 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public void addCar(final int customerId, Car car) {
+    public void addCar(final int customerId, final String carId) {
         try {
             LOGGER.info("Preparing to add car to customer...");
             Customer customer = getCustomer(customerId);
-            customer.addCar(car);
+            Car car = carService.getCar(carId);
             car.addCustomer(customer);
+            customer.addCar(car);
             customerRepository.save(customer);
         } catch (Exception e) {
             LOGGER.error("Adding car thrown error: " + e + e.getMessage());
