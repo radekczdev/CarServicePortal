@@ -35,7 +35,7 @@ public class CarController {
         carService.modifyCar(carDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "cars/{licensePlate}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "cars/{licensePlate}")
     public void deleteCar(@PathVariable final String licensePlate) {
         carService.deleteCar(licensePlate);
     }
