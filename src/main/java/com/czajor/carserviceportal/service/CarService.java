@@ -32,18 +32,7 @@ public class CarService {
         return carRepository.findById(carId).orElse(new Car());
     }
 
-    public void modifyCar(final Car car) {
-        LOGGER.info("Starting to modifyCar by CarService...");
-        String id = car.getId();
-        try {
-            ofNullable(carRepository.findById(id).get()).ifPresent(c -> car.addCustomer(c.getCustomer()));
-            carRepository.save(car);
-        } catch (NoSuchElementException e) {
-            LOGGER.error("modifyCar thrown message: " + e.getMessage());
-        }
-    }
-
-    public void modifyCarParameter(final CarDto carDto) {
+    public void modifyCar(final CarDto carDto) {
         LOGGER.info("Starting to modifyCarParameters by CarService...");
         try {
             Car car = carRepository.findById(carDto.getLicensePlate()).orElseThrow(CarNotFoundException::new);
