@@ -1,8 +1,6 @@
 package com.czajor.carserviceportal.api;
 
-import com.czajor.carserviceportal.domain.CarDto;
 import com.czajor.carserviceportal.domain.CustomerDto;
-import com.czajor.carserviceportal.mapper.CarMapper;
 import com.czajor.carserviceportal.mapper.CustomerMapper;
 import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.service.CustomerService;

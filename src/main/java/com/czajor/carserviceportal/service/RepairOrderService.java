@@ -5,7 +5,6 @@ import com.czajor.carserviceportal.exception.OrderNotFoundException;
 import com.czajor.carserviceportal.mapper.StatusTypeMapper;
 import com.czajor.carserviceportal.model.Mail;
 import com.czajor.carserviceportal.model.RepairOrder;
-import com.czajor.carserviceportal.model.RepairOrderStatus;
 import com.czajor.carserviceportal.model.StatusType;
 import com.czajor.carserviceportal.repository.RepairOrderRepository;
 import org.apache.pdfbox.pdmodel.PDDocument;

@@ -1,12 +1,7 @@
 package com.czajor.carserviceportal.config;
 
-import com.czajor.carserviceportal.api.CarController;
-import com.czajor.carserviceportal.api.CustomerController;
-import com.czajor.carserviceportal.model.Customer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.PathSelectors;

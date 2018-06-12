@@ -3,7 +3,6 @@ package com.czajor.carserviceportal.repairorder;
 import com.czajor.carserviceportal.model.RepairOrder;
 import com.czajor.carserviceportal.repository.RepairOrderRepository;
 import com.czajor.carserviceportal.samples.RepairOrderGenerator;
-import com.czajor.carserviceportal.service.CustomerService;
 import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.model.StatusType;
@@ -21,7 +20,7 @@ public class RepairOrderTestSuite {
     RepairOrderRepository repairOrderRepository;
 
     @Test
-    public void testRepairOrderRepository() {
+    public void testRepairOrderRepository() throws Exception {
         // Given
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
         RepairOrder repairOrder = orderGenerator.generateSampleOrder();

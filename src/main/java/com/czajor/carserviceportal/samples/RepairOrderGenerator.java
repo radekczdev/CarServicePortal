@@ -6,9 +6,7 @@ import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.model.RepairOrder;
 import com.czajor.carserviceportal.model.RepairOrderType;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 public class RepairOrderGenerator {
     public RepairOrder generateSampleOrder() {

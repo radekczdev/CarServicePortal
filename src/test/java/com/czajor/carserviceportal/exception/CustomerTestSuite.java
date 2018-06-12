@@ -23,7 +23,7 @@ public class CustomerTestSuite {
 
     @Test
     @Transactional
-    public void testCustomerDao() {
+    public void testCustomerDao() throws Exception {
         // Given
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
         RepairOrder repairOrder = orderGenerator.generateSampleOrder();
