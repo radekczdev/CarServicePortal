@@ -31,6 +31,10 @@ public class CarService {
     public Car getCar(final String carId) {
         return carRepository.findById(carId).orElse(new Car());
     }
+    
+    public Car addCar(final Car car) {
+        return carRepository.save(car);
+    }
 
     public void modifyCar(final CarDto carDto) {
         LOGGER.info("Starting to modifyCarParameters by CarService...");

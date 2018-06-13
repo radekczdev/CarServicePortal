@@ -11,4 +11,7 @@ public interface CarRepository extends CrudRepository<Car, String> {
 
     @Override
     List<Car> findAll();
+    
+    @Override
+    Car save(Car car);
 }

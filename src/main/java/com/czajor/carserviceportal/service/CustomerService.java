@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +20,7 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
-
-    @Autowired
-    private CarService carService;
-
+    
     public Customer addCustomer(final Customer customer) {
         return customerRepository.save(customer);
     }
@@ -47,11 +43,10 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public void addCar(final int customerId, final String carId) {
+    public void addCar(final int customerId, final String carId, Car car) {
         try {
             LOGGER.info("Preparing to add car to customer...");
             Customer customer = getCustomer(customerId);
-            Car car = carService.getCar(carId);
             car.addCustomer(customer);
             customer.addCar(car);
             customerRepository.save(customer);

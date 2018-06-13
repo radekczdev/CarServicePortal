@@ -1,6 +1,8 @@
 package com.czajor.carserviceportal.api;
 
+import com.czajor.carserviceportal.domain.CarDto;
 import com.czajor.carserviceportal.domain.CustomerDto;
+import com.czajor.carserviceportal.mapper.CarMapper;
 import com.czajor.carserviceportal.mapper.CustomerMapper;
 import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.service.CustomerService;
@@ -20,6 +22,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerMapper customerMapper;
+    
+    @Autowired
+    private CarMapper carMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "customers/{id}")
     public CustomerDto getCustomer(@PathVariable final int id) {
@@ -47,8 +52,8 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "customers/{customerId}/{carId}", consumes = APPLICATION_JSON_VALUE)
-    public void addCar(@PathVariable final int customerId, @PathVariable final String carId) {
-        customerService.addCar(customerId, carId);
+    public void addCar(@PathVariable final int customerId, @PathVariable final String carId, @RequestBody final CarDto carDto) {
+        customerService.addCar(customerId, carId, carMapper.mapToCar(carDto));
     }
 
 }
