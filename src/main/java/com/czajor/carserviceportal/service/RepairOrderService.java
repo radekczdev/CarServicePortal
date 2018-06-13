@@ -80,10 +80,24 @@ public class RepairOrderService {
 
             RepairOrder repairOrder = repairOrderRepository.findById(reportId).orElseThrow(OrderNotFoundException::new);
 
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
-            contentStream.moveTo(10, 10);
+            String[][] content = {{"car license plates: ", repairOrder.getCar().getId()},
+            		{"current order status", repairOrder.getCurrentStatus().toString()},
+            		{"date of creation", repairOrder.getDateOfCreation().toString()}
+            };
+            
             contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 30);
+            contentStream.newLineAtOffset(150, 600);
             contentStream.showText("REPAIR ORDER no " + repairOrder.getId());
+            contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 16);
+            contentStream.newLineAtOffset(25, 350);
+            for(String[] text : content) {
+            	contentStream.showText(text[0] + ": " + text[1]);
+            	contentStream.newLineAtOffset(0, -15);
+            }           
             contentStream.endText();
             contentStream.close();
 
