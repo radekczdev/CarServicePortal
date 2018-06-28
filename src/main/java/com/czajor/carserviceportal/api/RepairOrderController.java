@@ -16,7 +16,7 @@ import java.util.List;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "/repairOrder")
+@RequestMapping(path = "/repair-orders")
 @CrossOrigin(origins = "*")
 public class RepairOrderController {
 
@@ -26,32 +26,38 @@ public class RepairOrderController {
     @Autowired
     private RepairOrderMapper repairOrderMapper;
 
-    @RequestMapping(method = RequestMethod.POST, value = "createRepairOrder", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(
+    		method = RequestMethod.POST, 
+    		consumes = APPLICATION_JSON_VALUE)
     public void createRepairOrder(@RequestBody final RepairOrderDto repairOrderDto) {
         repairOrderService.createRepairOrder(repairOrderMapper.mapToRepairOrder(repairOrderDto));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getRepairOrders")
+    @RequestMapping(
+    		method = RequestMethod.GET
+    		)
     public List<RepairOrderDto> getRepairOrders() {
         return repairOrderMapper.mapToRepairOrderDtoList(repairOrderService.getRepairOrders());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "changeOrderStatus")
-    public void changeOrderStatus(@RequestBody final StatusTypeDto statusType, @RequestParam int repairOrderId) {
+    @RequestMapping(
+    		method = RequestMethod.PUT, 
+    		value = "/{repairOrderId}/status")
+    public void changeOrderStatus(@RequestBody final StatusTypeDto statusType, @PathVariable int repairOrderId) {
         repairOrderService.changeRepairOrderStatus(repairOrderId, statusType);
     }
 
-    @RequestMapping(method = RequestMethod.GET,
-            value = "getReport"
+    @RequestMapping(
+    		method = RequestMethod.GET,
+    		value = "/{id}/report"
             )
-    public ResponseEntity<byte[]> getReport(@RequestParam int id) {
+    public ResponseEntity<byte[]> getReport(@PathVariable int id) {
         byte[] contents = repairOrderService.generateReport(id).toByteArray();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/pdf"));
         String filename = "output.pdf";
         headers.setContentDispositionFormData(filename, filename);
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-        ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
-        return response;
+        return new ResponseEntity<>(contents, headers, HttpStatus.OK);
     }
 }

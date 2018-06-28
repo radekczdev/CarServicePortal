@@ -1,6 +1,8 @@
 package com.czajor.carserviceportal.service;
 
+import com.czajor.carserviceportal.domain.CustomerDto;
 import com.czajor.carserviceportal.exception.CustomerNotFoundException;
+import com.czajor.carserviceportal.mapper.SameFieldsMapper;
 import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.repository.CustomerRepository;
@@ -38,12 +40,24 @@ public class CustomerService {
             return new Customer();
         }
     }
+    
+    public void modifyCustomer(final CustomerDto customerDto) {
+    	try {
+    		LOGGER.info("Preparing to modify customer parameters...");
+    		Customer customer = customerRepository.findById(customerDto.getId()).orElseThrow(CustomerNotFoundException::new);
+    		customer = (Customer) SameFieldsMapper.map(customer, customerDto);
+    		customerRepository.save(customer);
+    	} catch (Exception e) {
+    		LOGGER.error("Customer with id: " + customerDto.getId() + " not found");
+		}
+    	
+    }
 
     public void deleteCustomer(final int id) {
         customerRepository.deleteById(id);
     }
 
-    public void addCar(final int customerId, final String carId, Car car) {
+    public void addCar(final int customerId, final Car car) {
         try {
             LOGGER.info("Preparing to add car to customer...");
             Customer customer = getCustomer(customerId);
