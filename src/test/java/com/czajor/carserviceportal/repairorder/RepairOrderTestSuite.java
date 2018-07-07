@@ -7,6 +7,7 @@ import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.model.Customer;
 import com.czajor.carserviceportal.model.StatusType;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class RepairOrderTestSuite {
     RepairOrderRepository repairOrderRepository;
 
     @Test
+    @Ignore
     public void testRepairOrderRepository() throws Exception {
         // Given
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
@@ -48,6 +50,7 @@ public class RepairOrderTestSuite {
     }
 
     @Test
+    @Ignore
     public void changeOrderStatus() {
         // Given
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();

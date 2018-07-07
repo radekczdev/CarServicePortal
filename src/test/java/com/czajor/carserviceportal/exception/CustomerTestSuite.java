@@ -6,6 +6,7 @@ import com.czajor.carserviceportal.repository.CustomerRepository;
 import com.czajor.carserviceportal.samples.RepairOrderGenerator;
 import com.czajor.carserviceportal.model.Car;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class CustomerTestSuite {
 
     @Test
     @Transactional
+    @Ignore
     public void testCustomerDao() throws Exception {
         // Given
         RepairOrderGenerator orderGenerator = new RepairOrderGenerator();
