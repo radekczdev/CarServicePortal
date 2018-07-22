@@ -22,7 +22,7 @@ public class CarController {
     private CarMapper carMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{carId}")
-    public CarDto getCar(@PathVariable final String carId) {
+    public CarDto getCar(@PathVariable("carId") final String carId) {
         return carMapper.mapToCarDto(carService.getCar(carId));
     }
 
@@ -37,7 +37,7 @@ public class CarController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{licensePlate}")
-    public void deleteCar(@PathVariable final String licensePlate) {
+    public void deleteCar(@PathVariable("licensePlate") final String licensePlate) {
         carService.deleteCar(licensePlate);
     }
 
