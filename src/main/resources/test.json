@@ -1,0 +1,77 @@
+[
+  {
+    "id": 489,
+    "name": "Janusz",
+    "surname": "dsdsds",
+    "email": "radekck@gmail.com",
+    "phoneNumber": "123",
+    "address": {
+      "id": 515,
+      "city": "kielce",
+      "street": "sezamkowa",
+      "homeNumber": 12,
+      "flatNumber": 14,
+      "postCode": "25-020"
+    },
+    "carList": [
+      {
+        "licensePlate": "TK12347",
+        "brand": "Ford",
+        "model": "Focus",
+        "buildYear": 2016,
+        "engine": "petrol",
+        "engineVolume": 2.5
+      }
+    ]
+  },
+  {
+    "id": 516,
+    "name": "George",
+    "surname": "dsdsds",
+    "email": "rsrs@rere.pl",
+    "phoneNumber": "1234",
+    "address": {
+      "id": 517,
+      "city": "kielce",
+      "street": "sezamkowa",
+      "homeNumber": 12,
+      "flatNumber": 14,
+      "postCode": "25-020"
+    },
+    "carList": [
+      {
+        "licensePlate": "TK12345",
+        "brand": "Opel",
+        "model": "Astra",
+        "buildYear": 2016,
+        "engine": "petrol",
+        "engineVolume": 6.5
+      }
+    ]
+  },
+  {
+    "id": 551,
+    "name": "Paul",
+    "surname": "MCartney",
+    "email": "rsrs@rere.pl",
+    "phoneNumber": "1234",
+    "address": {
+      "id": 552,
+      "city": "kielce",
+      "street": "sezamkowa",
+      "homeNumber": 12,
+      "flatNumber": 14,
+      "postCode": "25-020"
+    },
+    "carList": [
+      {
+        "licensePlate": "WU12345",
+        "brand": "Lincoln",
+        "model": "Navigator",
+        "buildYear": 2016,
+        "engine": "petrol",
+        "engineVolume": 2.5
+      }
+    ]
+  }
+]
