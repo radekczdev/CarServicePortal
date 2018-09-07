@@ -15,7 +15,7 @@
     },
     "carList": [
       {
-        "licensePlate": "TK12347",
+        "id": "TK12347",
         "brand": "Ford",
         "model": "Focus",
         "buildYear": 2016,
@@ -40,12 +40,20 @@
     },
     "carList": [
       {
-        "licensePlate": "TK12345",
+        "id": "TK12345",
         "brand": "Opel",
         "model": "Astra",
         "buildYear": 2016,
         "engine": "petrol",
         "engineVolume": 6.5
+      },
+      {
+        "id": "WU12345",
+        "brand": "Lincoln",
+        "model": "Navigator",
+        "buildYear": 2016,
+        "engine": "petrol",
+        "engineVolume": 2.5
       }
     ]
   },
@@ -65,7 +73,7 @@
     },
     "carList": [
       {
-        "licensePlate": "WU12345",
+        "id": "WU12345",
         "brand": "Lincoln",
         "model": "Navigator",
         "buildYear": 2016,
