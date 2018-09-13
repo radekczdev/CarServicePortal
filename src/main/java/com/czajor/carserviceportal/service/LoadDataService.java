@@ -3,6 +3,8 @@ package com.czajor.carserviceportal.service;
 import com.czajor.carserviceportal.exception.CarHasOwnerException;
 import com.czajor.carserviceportal.model.Car;
 import com.czajor.carserviceportal.model.Customer;
+import com.czajor.carserviceportal.model.RepairOrder;
+import com.czajor.carserviceportal.repository.CustomerRepository;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,21 +15,28 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
+@Transactional
 public class LoadDataService {
-    @Value("${db.file.path}")
-    private String DB_FILE_PATH;
+    @Value("${customers.db.file.path}")
+    private String CUSTOMERS_DB_FILE_PATH;
+    @Value("${repairorders.db.file.path}")
+    private String REPAIRORDERS_DB_FILE_PATH;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadDataService.class);
     private ResourceLoader resourceLoader;
     @Autowired
-    private CustomerService customerService;
+    private CustomerRepository customerRepository;
 
     public LoadDataService(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
@@ -38,14 +47,13 @@ public class LoadDataService {
         try {
             LOGGER.info("ReadDataService: Trying to load data from file...");
 
-            Gson jsonWithData = new Gson();
             List<Customer> customers = Arrays.asList(
-                    jsonWithData.fromJson(
-                            getDataFromFile(DB_FILE_PATH), Customer[].class)
-                );
+                    transferDataToJson(Customer[].class, CUSTOMERS_DB_FILE_PATH));
+            List<RepairOrder> repairOrders = Arrays.asList(
+                    transferDataToJson(RepairOrder[].class, REPAIRORDERS_DB_FILE_PATH));
 
             LOGGER.info("Adding Customers to Cars");
-            prepareCustomerCars(customers).forEach(customerService::addCustomer);
+            prepareCustomersData(customers).forEach(c -> customerRepository.save(c));
             LOGGER.info("ReadDataService: Reading data succeeded!");
 
         } catch (IOException | NullPointerException e) {
@@ -53,7 +61,12 @@ public class LoadDataService {
         }
     }
 
-    private List<Customer> prepareCustomerCars(List<Customer> customers) {
+//    private void prepareRepairOrders(List<RepairOrder> repairOrders) {
+//          TO DO
+//        return repairOrders;
+//    }
+
+    private List<Customer> prepareCustomersData(List<Customer> customers) {
         try {
             for(Customer customer : customers) {
                 List<Car> carList = customer.getCarList();
@@ -67,7 +80,13 @@ public class LoadDataService {
         return customers;
     }
 
-    private BufferedReader getDataFromFile(String dbFilePath) throws IOException, NullPointerException {
+    private <T> T transferDataToJson(Class<T> objectType, String filePath) throws IOException {
+        Gson jsonWithData = new Gson();
+        return jsonWithData.fromJson(
+                        getBufferedDataFromFile(filePath), objectType);
+    }
+
+    private BufferedReader getBufferedDataFromFile(String dbFilePath) throws IOException, NullPointerException {
         Resource resource = resourceLoader.getResource(dbFilePath);
         File fileWithData = resource.getFile();
         FileReader fileReader = new FileReader(fileWithData);
