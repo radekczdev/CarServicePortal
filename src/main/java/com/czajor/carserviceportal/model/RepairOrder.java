@@ -79,6 +79,10 @@ public final class RepairOrder {
         }
     }
 
+    public void setCar (Car car) {
+        this.car = car;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,0 +1,21 @@
+[
+  {
+    "id": 25,
+    "car": {
+      "id": "TK12345"
+    },
+    "description": "Problem with Carburator",
+    "repairOrderType": [
+      "ELECTRICAL",
+      "MECHANICAL"
+    ],
+
+    "currentStatus": {
+      "id": 22,
+      "statusType": "PREPARED",
+      "dateBegan": "2018-09-17T19:42:41.663+0000",
+      "dateEnded": null
+    },
+    "dateOfCreation": "2018-09-17T19:42:41.663+0000"
+  }
+]
