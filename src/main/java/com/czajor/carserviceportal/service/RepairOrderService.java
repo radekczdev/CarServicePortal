@@ -72,6 +72,10 @@ public class RepairOrderService {
         return repairOrderRepository.findAll();
     }
 
+    public RepairOrder getRepairOrderById(int reportId) {
+        return repairOrderRepository.findById(reportId).orElse(new RepairOrder());
+    }
+
     public ResponseEntity<byte[]> generateReport(int reportId) {
     	ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {

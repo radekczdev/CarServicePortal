@@ -2,16 +2,18 @@ package com.czajor.carserviceportal.domain;
 
 import com.czajor.carserviceportal.model.RepairOrderStatus;
 import com.czajor.carserviceportal.model.RepairOrderType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class RepairOrderDto {
     private int id;
     private String carId;

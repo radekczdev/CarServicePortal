@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "CARS")
 @NoArgsConstructor
 @Getter
-@Setter
+@Setter(AccessLevel.PRIVATE)
 public final class Car {
     @Id
     @Column(name="id", unique = true)
