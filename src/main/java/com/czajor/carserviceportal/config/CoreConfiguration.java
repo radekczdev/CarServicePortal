@@ -2,7 +2,6 @@ package com.czajor.carserviceportal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
-@EnableWs
 public class CoreConfiguration implements WebMvcConfigurer{
 
     @Bean

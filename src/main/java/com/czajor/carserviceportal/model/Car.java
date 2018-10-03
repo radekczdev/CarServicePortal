@@ -1,7 +1,10 @@
 package com.czajor.carserviceportal.model;
 
 import com.czajor.carserviceportal.exception.CarHasOwnerException;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

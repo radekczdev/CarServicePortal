@@ -1,16 +1,15 @@
 package com.czajor.carserviceportal.domain;
 
 import com.czajor.carserviceportal.model.RepairOrderType;
-import com.czajor.carserviceportal.model.StatusType;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
-//@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

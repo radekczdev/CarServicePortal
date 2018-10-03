@@ -25,14 +25,14 @@ public final class RepairOrder {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinTable(
-                    name = "REPAIR_ORDER_STATUS_HISTORY",
-                    joinColumns = {
-                            @JoinColumn(name = "repair_order_id", referencedColumnName = "id")
-                    },
-                    inverseJoinColumns = {
-                            @JoinColumn(name = "previous_status_id", referencedColumnName = "id")
-                    }
-            )
+            name = "REPAIR_ORDER_STATUS_HISTORY",
+            joinColumns = {
+                    @JoinColumn(name = "repair_order_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "previous_status_id", referencedColumnName = "id")
+            }
+    )
     private List<RepairOrderStatus> previousStatusList = new ArrayList<>();
 
     @NotNull
