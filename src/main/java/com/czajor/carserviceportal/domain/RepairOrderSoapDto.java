@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //@AllArgsConstructor
@@ -24,11 +21,11 @@ public class RepairOrderSoapDto {
     private List<RepairOrderType> repairOrderTypes;
     private String currentStatus;
 
-    public RepairOrderSoapDto (int id, String carId, String description, List<RepairOrderType> repairOrderTypes, String statusType) {
+    public RepairOrderSoapDto (int id, String carId, String description, Set<RepairOrderType> repairOrderTypes, String statusType) {
         this.id = id;
         this.carId = carId;
         this.description = description;
-//        this.repairOrderTypes = repairOrderTypes.stream().collect(Collectors.toList());
+        this.repairOrderTypes = repairOrderTypes.isEmpty() ? Collections.emptyList() : new ArrayList<>(repairOrderTypes);
         this.currentStatus = statusType;
     }
 }

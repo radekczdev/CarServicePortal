@@ -17,7 +17,7 @@ public class RepairOrderSoapDtoMapper {
                 repairOrder.getId(),
                 repairOrder.getCar().getId(),
                 repairOrder.getDescription(),
-                repairOrder.getRepairOrderType().stream().collect(Collectors.toList()),
+                repairOrder.getRepairOrderType(),
                 repairOrder.getCurrentStatus().getStatusType().name());
     }
 

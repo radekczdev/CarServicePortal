@@ -43,7 +43,7 @@ public final class RepairOrder {
     private RepairOrderStatus currentStatus;
 
     @NotNull
-    @ElementCollection(targetClass = RepairOrderType.class)
+    @ElementCollection(targetClass = RepairOrderType.class, fetch = FetchType.EAGER)
     @JoinTable(name = "REPAIR_ORDER_TYPES", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
     private Set<RepairOrderType> repairOrderType = new HashSet<>();
