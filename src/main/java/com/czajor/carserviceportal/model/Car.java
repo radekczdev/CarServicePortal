@@ -34,7 +34,6 @@ public final class Car {
     @NotNull
     private double engineVolume;
 
-    @NotNull
     @ManyToOne
     @JoinTable(name = "cars_of_customer",
             joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
