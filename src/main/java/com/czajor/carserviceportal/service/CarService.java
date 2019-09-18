@@ -18,11 +18,13 @@ import static java.util.Optional.ofNullable;
 @Service
 public class CarService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(Car.class);
-
-    @Autowired
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarService.class);
     private CarRepository carRepository;
 
+    @Autowired
+    public CarService(final CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     public List<Car> getCars() {
         return ofNullable(carRepository.findAll()).orElse(Collections.emptyList());
@@ -36,15 +38,11 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public void modifyCar(final CarDto carDto) {
+    public Car modifyCar(final CarDto carDto) throws IllegalAccessException, CarNotFoundException {
         LOGGER.info("Starting to modifyCarParameters by CarService...");
-        try {
-            Car car = carRepository.findById(carDto.getLicensePlate()).orElseThrow(CarNotFoundException::new);
-            car = (Car) SameFieldsMapper.map(car, carDto);
-            carRepository.save(car);
-        } catch (Exception e) {
-            LOGGER.error("modifyCarParameters thrown message: " + e);
-        }
+        Car car = carRepository.findById(carDto.getLicensePlate()).orElseThrow(CarNotFoundException::new);
+        car = (Car) SameFieldsMapper.map(car, carDto);
+        return carRepository.save(car);
     }
 
     public void deleteCar(final String licensePlate) {

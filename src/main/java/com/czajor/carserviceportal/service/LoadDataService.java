@@ -31,10 +31,8 @@ import java.util.Set;
 @Service
 @Transactional
 public class LoadDataService {
-    @Value("${customers.db.file.path}")
-    private String CUSTOMERS_DB_FILE_PATH;
-    @Value("${repairorders.db.file.path}")
-    private String REPAIRORDERS_DB_FILE_PATH;
+    private final String CUSTOMERS_DB_FILE_PATH;
+    private final String REPAIRORDERS_DB_FILE_PATH;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadDataService.class);
     private ResourceLoader resourceLoader;
     @Autowired
@@ -44,7 +42,11 @@ public class LoadDataService {
     @Autowired
     private RepairOrderRepository repairOrderRepository;
 
-    public LoadDataService(ResourceLoader resourceLoader) {
+    public LoadDataService(@Value("${customers.db.file.path}") final String customersDbFilePath,
+                           @Value("${repairorders.db.file.path}") final String repairOrdersDbFilePath,
+                           ResourceLoader resourceLoader) {
+        this.CUSTOMERS_DB_FILE_PATH = customersDbFilePath;
+        this.REPAIRORDERS_DB_FILE_PATH = repairOrdersDbFilePath;
         this.resourceLoader = resourceLoader;
     }
 
@@ -57,7 +59,7 @@ public class LoadDataService {
                     transferDataToJson(Customer[].class, CUSTOMERS_DB_FILE_PATH));
             List<RepairOrder> repairOrders = Arrays.asList(
                     transferDataToJson(RepairOrder[].class, REPAIRORDERS_DB_FILE_PATH));
-            repairOrders.forEach(System.out::print);
+            repairOrders.forEach(a -> LOGGER.info(a.toString()));
             LOGGER.info("Adding Customers to Cars");
             prepareCustomersData(customers).forEach(customerRepository::save);
             LOGGER.info("Adding Cars to Repair Order");
@@ -77,7 +79,7 @@ public class LoadDataService {
                 repairOrder.getRepairOrderType().addAll(repairOrderTypes);
             }
         } catch (CarNotFoundException e) {
-            LOGGER.error("Cannot add car to RepairOrder: " + e);
+            LOGGER.error("Cannot add car to RepairOrder: ", e);
         }
         return repairOrders;
     }
@@ -91,7 +93,7 @@ public class LoadDataService {
                 }
             }
         } catch (CarHasOwnerException e) {
-            LOGGER.error("Cannot add customer to car instance: " + e);
+            LOGGER.error("Cannot add customer to car instance: ", e);
         }
         return customers;
     }
@@ -102,7 +104,7 @@ public class LoadDataService {
                 getBufferedDataFromFile(filePath), objectType);
     }
 
-    private BufferedReader getBufferedDataFromFile(String dbFilePath) throws IOException, NullPointerException {
+    private BufferedReader getBufferedDataFromFile(String dbFilePath) throws IOException {
         Resource resource = resourceLoader.getResource(dbFilePath);
         File fileWithData = resource.getFile();
         FileReader fileReader = new FileReader(fileWithData);
