@@ -11,14 +11,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-				.inMemoryAuthentication().withUser("user").password("{noop}password").roles("USER").and()
-				.withUser("admin").password("{noop}password").roles("USER", "ADMIN");
+		auth.inMemoryAuthentication()
+				.withUser("user")
+					.password("{noop}password")
+					.roles("USER")
+					.and()
+				.withUser("admin")
+					.password("{noop}password")
+					.roles("USER", "ADMIN");
 	}
 
 	// TODO implement csrf
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-	}
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.csrf().disable();
+//	}
 }
