@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+          font: 20px "Montserrat", sans-serif;
+          line-height: 1.8;
+          color: #f5f6f7;
+          background-color: #2f2f2f;
+        }
+    </style>
+</head>
+<body>
+<h1>Oh... We have a problem...</h1>
+<h2>But don't worry :) We will fix it!</h2>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Date</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${timestamp}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Path</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${path}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Error</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${error}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Status</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${status}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Message</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Exception</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${exception}"></span>
+    </div>
+</div>
+<div class="row rowDesign">
+    <div class="col-md-4 ml-auto">
+        <span class="legend">Trace</span>
+    </div>
+    <div class="col-md-8">
+        <span th:text="${trace}"></span>
+    </div>
+</div>
+</body>
+</html>
