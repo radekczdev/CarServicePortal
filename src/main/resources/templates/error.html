@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style>
         body {
+          height: 100%;
           font: 20px "Montserrat", sans-serif;
           line-height: 1.8;
           color: #f5f6f7;
@@ -13,62 +17,69 @@
     </style>
 </head>
 <body>
-<h1>Oh... We have a problem...</h1>
-<h2>But don't worry :) We will fix it!</h2>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Date</span>
+<div class="h-100 row align-items-center">
+    <div class="col">
+        <i class="material-icons" style="font-size:48px;color:red">error_outline</i>
+        <h1>Oh... We have a problem...</h1>
+        <h2>But don't worry :) We will fix it!</h2><i class="material-icons" style="font-size:48px;color:white">mood</i>
     </div>
-    <div class="col-md-8">
-        <span th:text="${timestamp}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Path</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${path}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Error</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${error}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Status</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${status}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Message</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${message}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Exception</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${exception}"></span>
-    </div>
-</div>
-<div class="row rowDesign">
-    <div class="col-md-4 ml-auto">
-        <span class="legend">Trace</span>
-    </div>
-    <div class="col-md-8">
-        <span th:text="${trace}"></span>
+    <div class="col">
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Date</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${timestamp}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Path</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${path}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Error</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${error}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Status</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${status}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Message</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${message}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Exception</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${exception}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Trace</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${trace}"></span>
+            </div>
+        </div>
     </div>
 </div>
 </body>
